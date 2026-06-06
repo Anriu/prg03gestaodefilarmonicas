@@ -16,35 +16,34 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class InstrumentoService implements InstrumentoIService {
 
-    // Injeção de dependência automática via Lombok
+    // Injeção de dependência automática via Lombok do Repository genérico
     private final InstrumentoRepository instrumentoRepository;
 
     @Override
     public Instrumento save(Instrumento instrumento) {
-        // Log corrigido para bater com os atributos da sua classe abstrata
-        log.info("Salvando novo instrumento - Marca: {} | Modelo: {}", 
-                instrumento.getMarca(), 
-                instrumento.getModelo());
+        // Log atualizado utilizando o novo atributo nome
+        log.info("Salvando novo instrumento: {}", instrumento.getNome());
 
-        // Salva a subclasse concreta na tabela tb_instrumento do Supabase
+        // Salva a subclasse concreta na tabela única do Supabase
         return instrumentoRepository.save(instrumento);
     }
 
     @Override
     public Instrumento update(Instrumento instrumento) {
-        log.info("Atualizando instrumento ID {} - Marca: {} | Modelo: {}", 
+        // Log atualizado com o ID e o nome do instrumento
+        log.info("Atualizando instrumento ID {} - Nome: {}", 
                 instrumento.getId(), 
-                instrumento.getMarca(),
-                instrumento.getModelo());
+                instrumento.getNome());
 
         return instrumentoRepository.save(instrumento);
     }
 
     @Override
     public void delete(Instrumento instrumento) {
-        log.info("Removendo instrumento ID {} - N/S: {}", 
+        // Log atualizado para a remoção
+        log.info("Removendo instrumento ID {} - Nome: {}", 
                 instrumento.getId(), 
-                instrumento.getNumSerie());
+                instrumento.getNome());
 
         instrumentoRepository.delete(instrumento);
     }
