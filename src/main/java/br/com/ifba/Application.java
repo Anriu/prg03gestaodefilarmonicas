@@ -1,6 +1,6 @@
 package br.com.ifba;
 
-import br.com.ifba.curso.view.CursoListar;
+import br.com.ifba.instrumento.view.CadastroInstrumento;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -29,12 +29,15 @@ public class Application {
         log.info("Contexto Spring inicializado com sucesso");
 
         // Recupera a tela principal gerenciada pelo Spring
-        CursoListar tela = context.getBean(CursoListar.class);
+        CadastroInstrumento tela = context.getBean(CadastroInstrumento.class);
 
         // Log de abertura da tela principal
         log.info("Abrindo tela principal do sistema");
 
         // Exibe a tela principal
         tela.setVisible(true);
+        
+
+        
     }
 }
