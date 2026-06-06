@@ -10,7 +10,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>4.0.6</version>
-        <relativePath/> </parent>
+        <relativePath/> 
+    </parent>
 
     <groupId>br.com.ifba.prg3gestaodefilarmonicas</groupId>
     <artifactId>prg3gestaodefilarmonicas</artifactId>
@@ -33,7 +34,8 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope> </dependency>
+            <scope>runtime</scope> 
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,7 +55,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE250</version>
+        </dependency>
     </dependencies>
 
     <build>

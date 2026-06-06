@@ -19,6 +19,18 @@ public class CadastroInstrumento extends javax.swing.JFrame {
      */
     public CadastroInstrumento() {
         initComponents();
+        
+        // 1. Define o tamanho base padrão (caso o usuário desmaximize a tela)
+        this.setSize(1280, 720);
+
+        // 2. Define um tamanho mínimo para o usuário não conseguir esmagar os componentes com o mouse
+        this.setMinimumSize(new java.awt.Dimension(1024, 768));
+
+        // 3. Força a tela a abrir 100% MAXIMIZADA (ocupando os 1920x1080 do seu monitor ou qualquer outro)
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+
+        // 4. Se o usuário usar um monitor ultra-wide, garante que a janela abra centralizada
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,17 +42,42 @@ public class CadastroInstrumento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        background = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        background.setBackground(new java.awt.Color(3, 28, 48));
+        background.setForeground(new java.awt.Color(3, 28, 48));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cadastro de Instrumentos");
+
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(492, 492, 492)
+                .addComponent(jLabel1))
+        );
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jLabel1))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -83,5 +120,7 @@ public class CadastroInstrumento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel background;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
