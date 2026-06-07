@@ -18,9 +18,9 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
     
     /**
      * Creates new form CadastroMadeira
-     * 
      * @param instrumentoController
      */
+    
     public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController) {
         initComponents();
         
@@ -28,10 +28,8 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
               javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
 
-        // Recebe o controller por parâmetro
         this.instrumentoController = instrumentoController;
 
-        // Cria um novo instrumento de madeira vazio
         this.instrumento = new InstrumentoMadeira();
         
         
@@ -44,17 +42,15 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
                 javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
 
-        // Recebe o instrumento selecionado da tabela e o controller
         this.instrumento = instrumento;
         this.instrumentoController = instrumentoController;
 
-        // Preenche os campos de texto da tela
+
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
 
-        // Define os valores selecionados nos ComboBoxes
         cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
         cbAfinacao.setSelectedItem(instrumento.getAfinacao());
         cbPalheta.setSelectedItem(instrumento.getTipoPalheta());
@@ -218,26 +214,25 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        // 1. Extrai os textos inseridos nas caixas de texto
+
         instrumento.setTipo("Madeira");
         instrumento.setNome(txtNome.getText().trim());
         instrumento.setNumSerie(txtNumSerie.getText().trim());
         instrumento.setMarca(txtMarca.getText().trim());
         instrumento.setModelo(txtModelo.getText().trim());
 
-        // 2. Extrai as opções selecionadas nos ComboBoxes
+ 
         instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
         instrumento.setAfinacao(cbAfinacao.getSelectedItem().toString());
         instrumento.setTipoPalheta(cbPalheta.getSelectedItem().toString());
 
-        // 3. Verifica se é um novo registro ou uma atualização (igualzinho você fez em Cursos)
+
         if (instrumento.getId() == null) {
-            instrumentoController.save(instrumento); // Salva novo no Supabase
+            instrumentoController.save(instrumento); 
         } else {
-            instrumentoController.update(instrumento); // Atualiza o existente
+            instrumentoController.update(instrumento); 
         }
 
-        // 4. Fecha a janelinha de dados e volta para a listagem
         this.dispose();
         
     }//GEN-LAST:event_bntSalvarActionPerformed

@@ -5,12 +5,19 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Representa os instrumentos pertencentes à família dos metais.
+ *
+ * @author anriu
+ */
 @Entity
-@DiscriminatorValue("METAL") // Valor que será salvo na coluna 'tipo_instrumento'
+@DiscriminatorValue("METAL")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class InstrumentoMetal extends InstrumentoSopro {
-    
-    // Atributos específicos de metal (ex: quantidade de pistões/válvulas)
+
+    /**
+     * Quantidade de pistões ou válvulas presentes no instrumento.
+     */
     private Integer qtdPistoes;
 }

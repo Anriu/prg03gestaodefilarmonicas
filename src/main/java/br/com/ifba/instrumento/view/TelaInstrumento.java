@@ -26,14 +26,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class TelaInstrumento extends javax.swing.JFrame {
 
-    // Responsável por permitir filtro e ordenação na tabela
+   
     private TableRowSorter<DefaultTableModel> sorter;
 
-    // Controller de Instrumento injetado automaticamente pelo Spring via @Autowired
     @Autowired
     private InstrumentoIController instrumentoController;
 
-    // Contexto da aplicação Spring injetado automaticamente
     @Autowired
     private ApplicationContext context;
     
@@ -45,16 +43,10 @@ public class TelaInstrumento extends javax.swing.JFrame {
     public TelaInstrumento() {
         initComponents();
         
-        // 1. Define o tamanho base padrão (caso o usuário desmaximize a tela)
+        
         this.setSize(1280, 720);
-
-        // 2. Define um tamanho mínimo para o usuário não conseguir esmagar os componentes com o mouse
         this.setMinimumSize(new java.awt.Dimension(1024, 768));
-
-        // 3. Força a tela a abrir 100% MAXIMIZADA (ocupando os 1920x1080 do seu monitor ou qualquer outro)
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-
-        // 4. Se o usuário usar um monitor ultra-wide, garante que a janela abra centralizada
         this.setLocationRelativeTo(null);
         
         
@@ -87,16 +79,12 @@ public class TelaInstrumento extends javax.swing.JFrame {
     
     @PostConstruct
     public void iniciarBotoesTabela() {
-        // Configura os botões nas colunas 3 (Ver Detalhes), 4 (Editar) e 5 (Excluir) da tblInstrumentos
         for (int i = 3; i <= 5; i++) {
             tblInstrumentos.getColumnModel().getColumn(i).setCellRenderer(new ButtonRenderer());
             tblInstrumentos.getColumnModel().getColumn(i).setCellEditor(new ButtonEditor(new JCheckBox(), instrumentoController));
             tblInstrumentos.getColumnModel().getColumn(i).setMaxWidth(110);
             tblInstrumentos.getColumnModel().getColumn(i).setMinWidth(110);
         }
-
-        // Esconde totalmente a coluna do ID (índice 6) para manter o visual limpo da imagem
-        // Como o NetBeans gerou a tabela com 6 colunas no model, o Java adiciona a 7ª na listagem automaticamente.
     }
     
     @jakarta.annotation.PostConstruct
@@ -105,30 +93,30 @@ public class TelaInstrumento extends javax.swing.JFrame {
     }
     
     public void listarInstrumentos() {
-        // Pega o modelo da tblInstrumentos
+
         DefaultTableModel model = (DefaultTableModel) tblInstrumentos.getModel();
 
-        // Garante que o modelo da tabela aceite a 7ª coluna oculta para o ID se ela não existir no NetBeans
+
         if (model.getColumnCount() == 6) {
             model.addColumn("ID_OCULTO");
-            // Esconde dinamicamente a coluna do ID recém-criada
+
             tblInstrumentos.getColumnModel().getColumn(6).setMinWidth(0);
             tblInstrumentos.getColumnModel().getColumn(6).setMaxWidth(0);
             tblInstrumentos.getColumnModel().getColumn(6).setWidth(0);
         }
 
-        // Limpa todas as linhas da tabela
+
         model.setRowCount(0);
 
-        // Busca todos os instrumentos cadastrados usando o controller injetado
+
         List<Instrumento> listaInstrumentos = instrumentoController.findAll();
 
-        // Percorre a lista aplicando o Polimorfismo
+
         for (Instrumento instrumento : listaInstrumentos) {
             String tipo = "";
             String afinacao = "-"; 
 
-            // Identifica a subclasse real do instrumento
+
             if (instrumento instanceof InstrumentoMadeira) {
                 tipo = "Madeira";
                 afinacao = ((InstrumentoSopro) instrumento).getAfinacao();
@@ -141,7 +129,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 tipo = "Percussão";
             }
 
-            // Adiciona a linha batendo com a ordem das colunas da sua imagem
+
             model.addRow(new Object[]{
                 tipo,                       // Coluna 0 (Tipo)
                 instrumento.getNome(),      // Coluna 1 (Nome)
@@ -160,6 +148,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         if (texto.trim().isEmpty()) {
             sorter.setRowFilter(null);
         } else {
+            
             // Filtra os dados com base na coluna 1 (Coluna "Nome") ignorando maiúsculas/minúsculas
             sorter.setRowFilter(RowFilter.regexFilter("(?i)" + texto, 1));
         }
@@ -168,25 +157,25 @@ public class TelaInstrumento extends javax.swing.JFrame {
 
     
    private void aplicarFiltrosAvancados() {
-        // 1. Pega os valores atuais de todos os filtros da tela
+       
         String textoPesquisa = txtPesquisar.getText().trim();
         String tipoSelecionado = cbTipo.getSelectedItem().toString();
         String afinacaoSelecionada = cbAfinacao.getSelectedItem().toString();
 
-        // 2. Cria a lista para combinar os filtros
+
         java.util.List<RowFilter<Object, Object>> filtros = new java.util.ArrayList<>();
 
-        // 3. Filtro 1: Campo de texto (Busca por Nome na Coluna 1)
+
         if (!textoPesquisa.isEmpty()) {
             filtros.add(RowFilter.regexFilter("(?i)" + textoPesquisa, 1));
         }
 
-        // 4. Filtro 2: ComboBox de TIPO (Coluna 0)
+
         if (!tipoSelecionado.equals("Nenhum")) {
             filtros.add(RowFilter.regexFilter("^" + tipoSelecionado + "$", 0));
         }
 
-        // 5. Filtro 3: ComboBox de AFINAÇÃO (Coluna 2)
+
         if (!afinacaoSelecionada.equals("Nenhum")) {
             if (afinacaoSelecionada.equals("Sem Afinação")) {
                 filtros.add(RowFilter.regexFilter("^-$", 2));
@@ -195,23 +184,13 @@ public class TelaInstrumento extends javax.swing.JFrame {
             }
         }
 
-        // 6. Aplica a combinação final direto no sorter (sem mexer no estado da tabela)
+
         if (filtros.isEmpty()) {
             sorter.setRowFilter(null);
         } else {
             sorter.setRowFilter(RowFilter.andFilter(filtros));
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
     /**

@@ -5,12 +5,19 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Representa os instrumentos pertencentes à família das madeiras.
+ *
+ * @author anriu
+ */
 @Entity
-@DiscriminatorValue("MADEIRA") // Valor que será salvo na coluna 'tipo_instrumento'
+@DiscriminatorValue("MADEIRA")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class InstrumentoMadeira extends InstrumentoSopro {
-    
-    // Atributos específicos de madeira (ex: tipo de palheta)
-    private String tipoPalheta; 
+
+    /**
+     * Tipo de palheta utilizada pelo instrumento.
+     */
+    private String tipoPalheta;
 }
