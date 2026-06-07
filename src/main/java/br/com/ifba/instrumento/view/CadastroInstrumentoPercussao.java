@@ -12,7 +12,7 @@ import br.com.ifba.instrumento.entity.InstrumentoPercussao;
  * @author anriu
  */
 
-public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
+public class CadastroInstrumentoPercussao extends javax.swing.JFrame {
 
     private InstrumentoPercussao instrumento;
     private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
@@ -20,7 +20,7 @@ public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
     /**
      * Creates new form CadastroInstrumentoPercussivo
      */
-    public CadastroInstrumentoPercussivo(InstrumentoIController instrumentoController) {
+    public CadastroInstrumentoPercussao(InstrumentoIController instrumentoController) {
         initComponents();
         
         setDefaultCloseOperation(
@@ -33,7 +33,7 @@ public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
     }
     
     
-    public CadastroInstrumentoPercussivo(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
+    public CadastroInstrumentoPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
 
         initComponents();
 
@@ -309,14 +309,15 @@ public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussivo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoPercussao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

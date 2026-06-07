@@ -7,9 +7,16 @@ import br.com.ifba.instrumento.entity.InstrumentoMetal;
 import br.com.ifba.instrumento.entity.InstrumentoPercussao;
 import br.com.ifba.instrumento.view.CadastroInstrumentoMadeira;
 import br.com.ifba.instrumento.view.CadastroInstrumentoMetal;
-import br.com.ifba.instrumento.view.CadastroInstrumentoPercussivo;
+import br.com.ifba.instrumento.view.CadastroInstrumentoPercussao;
+import br.com.ifba.instrumento.view.ExibirDetalhesMadeira;
+import br.com.ifba.instrumento.view.ExibirDetalhesMetal;
+import br.com.ifba.instrumento.view.ExibirDetalhesPercussao;
 import java.awt.Component;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.DefaultCellEditor;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,17 +27,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ButtonEditor extends DefaultCellEditor {
 
+    private static final int COL_DETALHES = 3;
+    private static final int COL_EDITAR = 4;
+    private static final int COL_EXCLUIR = 5;
+
     private final InstrumentoIController instrumentoController;
-    protected JButton button;
+    private final JButton button;
+
     private int col;
     private int row;
     private JTable table;
     private Object valor;
-    
-    private int excluir = 5;
-    private int editar = 4;
-    private int verDetalhes = 3;
-    
+
     /**
      * Inicializa o editor responsável pelo tratamento das ações
      * executadas a partir dos botões da tabela.
@@ -79,53 +87,75 @@ public class ButtonEditor extends DefaultCellEditor {
      * Executa a ação correspondente à coluna selecionada na tabela.
      */
     private void executarAcao() {
+
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int linhaModel = table.convertRowIndexToModel(row);
 
-        // Recupera o identificador do instrumento selecionado.
         Long id = Long.valueOf(model.getValueAt(linhaModel, 6).toString());
 
-        // Obtém o instrumento correspondente por meio da camada de controle.
         Instrumento instrumento = instrumentoController.findById(id);
 
         if (instrumento == null) {
-            JOptionPane.showMessageDialog(button, "Erro: Instrumento não encontrado.");
+            JOptionPane.showMessageDialog(
+                    button,
+                    "Erro: Instrumento não encontrado."
+            );
             return;
         }
 
-        // Exibe as informações do instrumento selecionado.
-        if (col == 3) {
+        if (col == COL_DETALHES) {
 
-            JOptionPane.showMessageDialog(button,
-                    "Abrindo detalhes do instrumento: " + instrumento.getNome() + "\n" +
-                    "Marca: " + instrumento.getMarca() + " | Modelo: " + instrumento.getModelo(),
-                    "Ver Detalhes",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-        }
-
-        // Abre o formulário correspondente para edição do instrumento.
-        else if (col == 4) {
-
-            instrumento = instrumentoController.findById(id);
-
-            if (instrumento.getTipo().equals("Madeira")) {
-                new CadastroInstrumentoMadeira((InstrumentoMadeira) instrumento, instrumentoController).setVisible(true);
+            if ("Madeira".equals(instrumento.getTipo())) {
+                new ExibirDetalhesMadeira(
+                        (InstrumentoMadeira) instrumento,
+                        instrumentoController
+                ).setVisible(true);
             }
-            else if (instrumento.getTipo().equals("Metal")) {
-                new CadastroInstrumentoMetal((InstrumentoMetal) instrumento, instrumentoController).setVisible(true);
+            
+            if ("Metal".equals(instrumento.getTipo())) {
+                new ExibirDetalhesMetal(
+                        (InstrumentoMetal) instrumento,
+                        instrumentoController
+                ).setVisible(true);
             }
-            else if (instrumento.getTipo().equals("Percussão")) {
-                new CadastroInstrumentoPercussivo((InstrumentoPercussao) instrumento, instrumentoController).setVisible(true);
+            
+            if ("Percussão".equals(instrumento.getTipo())) {
+                new ExibirDetalhesPercussao(
+                        (InstrumentoPercussao) instrumento,
+                        instrumentoController
+                ).setVisible(true);
             }
-        }
 
-        // Remove o instrumento após confirmação do usuário.
-        else if (col == 5) {
+        } else if (col == COL_EDITAR) {
+
+            if ("Madeira".equals(instrumento.getTipo())) {
+
+                new CadastroInstrumentoMadeira(
+                        (InstrumentoMadeira) instrumento,
+                        instrumentoController
+                ).setVisible(true);
+
+            } else if ("Metal".equals(instrumento.getTipo())) {
+
+                new CadastroInstrumentoMetal(
+                        (InstrumentoMetal) instrumento,
+                        instrumentoController
+                ).setVisible(true);
+
+            } else if ("Percussão".equals(instrumento.getTipo())) {
+                System.out.println("Ola");
+                new CadastroInstrumentoPercussao(
+                        (InstrumentoPercussao) instrumento,
+                        instrumentoController
+                ).setVisible(true);
+            }
+
+        } else if (col == COL_EXCLUIR) {
 
             int resposta = JOptionPane.showConfirmDialog(
                     button,
-                    "Deseja realmente excluir o instrumento " + instrumento.getNome() + "?",
+                    "Deseja realmente excluir o instrumento "
+                    + instrumento.getNome() + "?",
                     "Confirmação de Exclusão",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.WARNING_MESSAGE
@@ -133,13 +163,14 @@ public class ButtonEditor extends DefaultCellEditor {
 
             if (resposta == JOptionPane.YES_OPTION) {
 
-                // Remove o registro da base de dados.
                 instrumentoController.delete(instrumento);
 
-                // Atualiza a tabela removendo a linha correspondente.
                 model.removeRow(linhaModel);
 
-                JOptionPane.showMessageDialog(button, "Instrumento removido com sucesso!");
+                JOptionPane.showMessageDialog(
+                        button,
+                        "Instrumento removido com sucesso!"
+                );
             }
         }
     }

@@ -76,9 +76,27 @@ public class TelaInstrumento extends javax.swing.JFrame {
         
         
     }
+  
+    @jakarta.annotation.PostConstruct
+    public void iniciarTela() {
+        configurarEstruturaColunas();
+        listarInstrumentos();
+    }
     
-    @PostConstruct
-    public void iniciarBotoesTabela() {
+    private void configurarEstruturaColunas() {
+        DefaultTableModel model = (DefaultTableModel) tblInstrumentos.getModel();
+
+        // 1. Garante que a coluna secreta do ID é adicionada APENAS UMA VEZ na inicialização do sistema
+        if (model.getColumnCount() == 6) {
+            model.addColumn("ID_OCULTO");
+        }
+
+        // 2. Aplica as regras visuais de tamanho e esconde a coluna 6
+        tblInstrumentos.getColumnModel().getColumn(6).setMinWidth(0);
+        tblInstrumentos.getColumnModel().getColumn(6).setMaxWidth(0);
+        tblInstrumentos.getColumnModel().getColumn(6).setWidth(0);
+
+        // 3. Vincula os botões de ação e define as larguras fixas de forma definitiva
         for (int i = 3; i <= 5; i++) {
             tblInstrumentos.getColumnModel().getColumn(i).setCellRenderer(new ButtonRenderer());
             tblInstrumentos.getColumnModel().getColumn(i).setCellEditor(new ButtonEditor(new JCheckBox(), instrumentoController));
@@ -87,35 +105,17 @@ public class TelaInstrumento extends javax.swing.JFrame {
         }
     }
     
-    @jakarta.annotation.PostConstruct
-    public void iniciarTela() {
-        listarInstrumentos();
-    }
-    
     public void listarInstrumentos() {
-
         DefaultTableModel model = (DefaultTableModel) tblInstrumentos.getModel();
 
-
-        if (model.getColumnCount() == 6) {
-            model.addColumn("ID_OCULTO");
-
-            tblInstrumentos.getColumnModel().getColumn(6).setMinWidth(0);
-            tblInstrumentos.getColumnModel().getColumn(6).setMaxWidth(0);
-            tblInstrumentos.getColumnModel().getColumn(6).setWidth(0);
-        }
-
-
+        // Limpa as linhas sem interferir nas colunas configuradas
         model.setRowCount(0);
 
-
         List<Instrumento> listaInstrumentos = instrumentoController.findAll();
-
 
         for (Instrumento instrumento : listaInstrumentos) {
             String tipo = "";
             String afinacao = "-"; 
-
 
             if (instrumento instanceof InstrumentoMadeira) {
                 tipo = "Madeira";
@@ -129,15 +129,14 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 tipo = "Percussão";
             }
 
-
             model.addRow(new Object[]{
-                tipo,                       // Coluna 0 (Tipo)
-                instrumento.getNome(),      // Coluna 1 (Nome)
-                afinacao,                   // Coluna 2 (Afinação)
-                "Ver Detalhes",             // Coluna 3 (Botão)
-                "Editar",                   // Coluna 4 (Botão)
-                "Excluir",                  // Coluna 5 (Botão)
-                instrumento.getId()         // Coluna 6 (ID Oculto)
+                tipo,                       // Coluna 0
+                instrumento.getNome(),      // Coluna 1
+                afinacao,                   // Coluna 2
+                "Ver Detalhes",             // Coluna 3
+                "Editar",                   // Coluna 4
+                "Excluir",                  // Coluna 5
+                instrumento.getId()         // Coluna 6
             });
         }
     }
@@ -423,7 +422,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
     private void bntCadastrarPercussaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarPercussaoActionPerformed
         // TODO add your handling code here:
         
-        CadastroInstrumentoPercussivo cadastroPercussao = new CadastroInstrumentoPercussivo(instrumentoController);
+        CadastroInstrumentoPercussao cadastroPercussao = new CadastroInstrumentoPercussao(instrumentoController);
         cadastroPercussao.setVisible(true);
         listarInstrumentos();
         
