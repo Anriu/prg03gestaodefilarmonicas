@@ -16,6 +16,7 @@ public abstract class Instrumento extends PersistenceEntity {
     // O ID FOI REMOVIDO DAQUI pois agora é herdado automaticamente de PersistenceEntity
 
     private String nome;
+    private String tipo;
     private String numSerie;
     private String marca;
     private String modelo;

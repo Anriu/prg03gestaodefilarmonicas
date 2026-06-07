@@ -64,6 +64,24 @@ public class TelaInstrumento extends javax.swing.JFrame {
         tblInstrumentos.setRowSorter(sorter);
         
         
+        txtPesquisar.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                aplicarFiltrosAvancados();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                aplicarFiltrosAvancados();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                aplicarFiltrosAvancados();
+            }
+        });
+        
+        
         
     }
     
@@ -149,7 +167,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
 
 
     
-    private void aplicarFiltrosAvancados() {
+   private void aplicarFiltrosAvancados() {
         // 1. Pega os valores atuais de todos os filtros da tela
         String textoPesquisa = txtPesquisar.getText().trim();
         String tipoSelecionado = cbTipo.getSelectedItem().toString();
@@ -177,18 +195,12 @@ public class TelaInstrumento extends javax.swing.JFrame {
             }
         }
 
-        // TRUQUE ANTIDUPLICAÇÃO: Desativa a atualização visual da tabela temporariamente
-        tblInstrumentos.setRowSorter(null);
-
-        // 6. Aplica a combinação final usando o AND se houver filtros ativos
+        // 6. Aplica a combinação final direto no sorter (sem mexer no estado da tabela)
         if (filtros.isEmpty()) {
             sorter.setRowFilter(null);
         } else {
             sorter.setRowFilter(RowFilter.andFilter(filtros));
         }
-
-        // Devolve o ordenador atualizado para a tabela renderizar tudo de uma vez só de forma limpa
-        tblInstrumentos.setRowSorter(sorter);
     }
     
     
@@ -212,20 +224,21 @@ public class TelaInstrumento extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        bntCadastrarMadeira = new javax.swing.JButton();
+        bntCadastrarMetal = new javax.swing.JButton();
+        bntCadastrarPercussao = new javax.swing.JButton();
+        lblCadastrar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblInstrumentos = new javax.swing.JTable();
         txtPesquisar = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblPesquisa = new javax.swing.JLabel();
         cbTipo = new javax.swing.JComboBox<>();
         cbAfinacao = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblFiltro = new javax.swing.JLabel();
+        lblTipo = new javax.swing.JLabel();
+        lblAfinação = new javax.swing.JLabel();
+        bntAtualizarLista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -233,42 +246,42 @@ public class TelaInstrumento extends javax.swing.JFrame {
         background.setForeground(new java.awt.Color(3, 28, 48));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Instrumentos");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(677, 70, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("Instrumentos");
+        background.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("Instrumento de Madeira");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bntCadastrarMadeira.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntCadastrarMadeira.setText("Instrumento de Madeira");
+        bntCadastrarMadeira.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bntCadastrarMadeiraActionPerformed(evt);
             }
         });
-        background.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 194, 199, -1));
+        background.add(bntCadastrarMadeira, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 194, 199, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setText("Instrumento de Metal");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bntCadastrarMetal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntCadastrarMetal.setText("Instrumento de Metal");
+        bntCadastrarMetal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bntCadastrarMetalActionPerformed(evt);
             }
         });
-        background.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 249, 199, -1));
+        background.add(bntCadastrarMetal, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 249, 199, -1));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton3.setText("Instrumento Percussivo");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bntCadastrarPercussao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntCadastrarPercussao.setText("Instrumento Percussivo");
+        bntCadastrarPercussao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bntCadastrarPercussaoActionPerformed(evt);
             }
         });
-        background.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 307, 199, -1));
+        background.add(bntCadastrarPercussao, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 307, 199, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Cadastrar Instrumentos");
-        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 151, -1, -1));
+        lblCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastrar.setText("Cadastrar Instrumentos");
+        background.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 151, -1, -1));
 
         tblInstrumentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -283,7 +296,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblInstrumentos);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 151, 831, 544));
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 151, 831, 500));
 
         txtPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,10 +305,10 @@ public class TelaInstrumento extends javax.swing.JFrame {
         });
         background.add(txtPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 111, 180, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Pesquisa por Nome do instrumento:");
-        background.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 80, -1, -1));
+        lblPesquisa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPesquisa.setForeground(new java.awt.Color(255, 255, 255));
+        lblPesquisa.setText("Pesquisa por Nome do instrumento:");
+        background.add(lblPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 80, -1, -1));
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum", "Madeira", "Metal", "Percussão" }));
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -313,20 +326,28 @@ public class TelaInstrumento extends javax.swing.JFrame {
         });
         background.add(cbAfinacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(1058, 111, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Filtros:");
-        background.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 53, -1, -1));
+        lblFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFiltro.setForeground(new java.awt.Color(255, 255, 255));
+        lblFiltro.setText("Filtros:");
+        background.add(lblFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 70, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Tipo:");
-        background.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 85, -1, -1));
+        lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTipo.setText("Tipo:");
+        background.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 85, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Afinação:");
-        background.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1058, 85, -1, -1));
+        lblAfinação.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAfinação.setForeground(new java.awt.Color(255, 255, 255));
+        lblAfinação.setText("Afinação:");
+        background.add(lblAfinação, new org.netbeans.lib.awtextra.AbsoluteConstraints(1058, 85, -1, -1));
+
+        bntAtualizarLista.setText("Atualizar Lista");
+        bntAtualizarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAtualizarListaActionPerformed(evt);
+            }
+        });
+        background.add(bntAtualizarLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 680, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -342,17 +363,24 @@ public class TelaInstrumento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bntCadastrarMadeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarMadeiraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        CadastroInstrumentoMadeira cadastroMadeiras = new CadastroInstrumentoMadeira(instrumentoController);
+    
+        cadastroMadeiras.setVisible(true);
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        listarInstrumentos();
+        
+    }//GEN-LAST:event_bntCadastrarMadeiraActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bntCadastrarMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarMetalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_bntCadastrarMetalActionPerformed
+
+    private void bntCadastrarPercussaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarPercussaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bntCadastrarPercussaoActionPerformed
 
     private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
         // TODO add your handling code here:
@@ -374,6 +402,11 @@ public class TelaInstrumento extends javax.swing.JFrame {
         aplicarFiltrosAvancados();
         
     }//GEN-LAST:event_cbAfinacaoActionPerformed
+
+    private void bntAtualizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAtualizarListaActionPerformed
+        // TODO add your handling code here:
+        listarInstrumentos(); 
+    }//GEN-LAST:event_bntAtualizarListaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,18 +448,19 @@ public class TelaInstrumento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JButton bntAtualizarLista;
+    private javax.swing.JButton bntCadastrarMadeira;
+    private javax.swing.JButton bntCadastrarMetal;
+    private javax.swing.JButton bntCadastrarPercussao;
     private javax.swing.JComboBox<String> cbAfinacao;
     private javax.swing.JComboBox<String> cbTipo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAfinação;
+    private javax.swing.JLabel lblCadastrar;
+    private javax.swing.JLabel lblFiltro;
+    private javax.swing.JLabel lblPesquisa;
+    private javax.swing.JLabel lblTipo;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblInstrumentos;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables

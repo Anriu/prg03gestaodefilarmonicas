@@ -4,19 +4,62 @@
  */
 package br.com.ifba.instrumento.view;
 
+import br.com.ifba.instrumento.controller.InstrumentoIController;
+import br.com.ifba.instrumento.entity.InstrumentoMadeira;
+
 /**
- *
  * @author anriu
  */
 public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
+    
+    private InstrumentoMadeira instrumento;
+    private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
+    
     /**
      * Creates new form CadastroMadeira
+     * 
+     * @param instrumentoController
      */
-    public CadastroInstrumentoMadeira() {
+    public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController) {
         initComponents();
-    }
+        
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
 
+        // Recebe o controller por parâmetro
+        this.instrumentoController = instrumentoController;
+
+        // Cria um novo instrumento de madeira vazio
+        this.instrumento = new InstrumentoMadeira();
+        
+        
+    }
+    public CadastroInstrumentoMadeira(InstrumentoMadeira instrumento, InstrumentoIController instrumentoController) {
+
+        initComponents();
+
+        setDefaultCloseOperation(
+                javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
+
+        // Recebe o instrumento selecionado da tabela e o controller
+        this.instrumento = instrumento;
+        this.instrumentoController = instrumentoController;
+
+        // Preenche os campos de texto da tela
+        txtNome.setText(instrumento.getNome());
+        txtNumSerie.setText(instrumento.getNumSerie());
+        txtMarca.setText(instrumento.getMarca());
+        txtModelo.setText(instrumento.getModelo());
+
+        // Define os valores selecionados nos ComboBoxes
+        cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
+        cbAfinacao.setSelectedItem(instrumento.getAfinacao());
+        cbPalheta.setSelectedItem(instrumento.getTipoPalheta());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +69,178 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtNumSerie = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        cbEstado = new javax.swing.JComboBox<>();
+        bntSalvar = new javax.swing.JButton();
+        cbAfinacao = new javax.swing.JComboBox<>();
+        cbPalheta = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nome do Instrumento:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Número de Série:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Marca:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Modelo:");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Estado de Conservação");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Afinação:");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Tipo de Palheta:");
+
+        txtNumSerie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtMarca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtModelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionando", "Quebrado" }));
+
+        bntSalvar.setText("Salvar");
+        bntSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntSalvarActionPerformed(evt);
+            }
+        });
+
+        cbAfinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dó", "Si Bemol", "Mi Bemol" }));
+
+        cbPalheta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não usa Palheta", "Palheta Simples", "Palheta Dupla" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bntSalvar)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbPalheta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(105, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(269, Short.MAX_VALUE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(106, 106, 106)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(56, 56, 56))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)))
+                        .addGap(58, 58, 58))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cbPalheta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addComponent(bntSalvar)
+                .addGap(55, 55, 55))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(54, 54, 54)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(520, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
+        // TODO add your handling code here:
+        
+        
+        // 1. Extrai os textos inseridos nas caixas de texto
+        instrumento.setTipo("Madeira");
+        instrumento.setNome(txtNome.getText().trim());
+        instrumento.setNumSerie(txtNumSerie.getText().trim());
+        instrumento.setMarca(txtMarca.getText().trim());
+        instrumento.setModelo(txtModelo.getText().trim());
+
+        // 2. Extrai as opções selecionadas nos ComboBoxes
+        instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
+        instrumento.setAfinacao(cbAfinacao.getSelectedItem().toString());
+        instrumento.setTipoPalheta(cbPalheta.getSelectedItem().toString());
+
+        // 3. Verifica se é um novo registro ou uma atualização (igualzinho você fez em Cursos)
+        if (instrumento.getId() == null) {
+            instrumentoController.save(instrumento); // Salva novo no Supabase
+        } else {
+            instrumentoController.update(instrumento); // Atualiza o existente
+        }
+
+        // 4. Fecha a janelinha de dados e volta para a listagem
+        this.dispose();
+        
+    }//GEN-LAST:event_bntSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +273,26 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroInstrumentoMadeira().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntSalvar;
+    private javax.swing.JComboBox<String> cbAfinacao;
+    private javax.swing.JComboBox<String> cbEstado;
+    private javax.swing.JComboBox<String> cbPalheta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumSerie;
     // End of variables declaration//GEN-END:variables
 }
