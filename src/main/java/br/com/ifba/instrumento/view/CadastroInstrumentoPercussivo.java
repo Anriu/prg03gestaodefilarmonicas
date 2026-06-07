@@ -4,17 +4,66 @@
  */
 package br.com.ifba.instrumento.view;
 
+import br.com.ifba.instrumento.controller.InstrumentoIController;
+import br.com.ifba.instrumento.entity.InstrumentoPercussao;
+
 /**
  *
  * @author anriu
  */
+
 public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
 
+    private InstrumentoPercussao instrumento;
+    private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
+    
     /**
      * Creates new form CadastroInstrumentoPercussivo
      */
-    public CadastroInstrumentoPercussivo() {
+    public CadastroInstrumentoPercussivo(InstrumentoIController instrumentoController) {
         initComponents();
+        
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
+
+        this.instrumentoController = instrumentoController;
+
+        this.instrumento = new InstrumentoPercussao();
+    }
+    
+    
+    public CadastroInstrumentoPercussivo(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
+
+        initComponents();
+
+        setDefaultCloseOperation(
+                javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
+
+        this.instrumento = instrumento;
+        this.instrumentoController = instrumentoController;
+
+
+        txtNome.setText(instrumento.getNome());
+        txtNumSerie.setText(instrumento.getNumSerie());
+        txtMarca.setText(instrumento.getMarca());
+        txtModelo.setText(instrumento.getModelo());
+
+        cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
+        
+        if(instrumento.getTipoPele() !=  null){
+            cbPele.setSelectedItem(instrumento.getTipoPele());
+        }else{
+            cbPele.setSelectedItem("Não usa baquetas");
+        }
+        
+        if(instrumento.getTipoBaqueta() !=  null){
+            cbBaqueta.setSelectedItem(instrumento.getTipoBaqueta());
+        }else{
+            cbBaqueta.setSelectedItem("Não usa baquetas");
+        }
+
     }
 
     /**
@@ -26,21 +75,222 @@ public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        lblnumSerie = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        lblModelo = new javax.swing.JLabel();
+        lblEstadoDeConservacao = new javax.swing.JLabel();
+        lblPele = new javax.swing.JLabel();
+        lblBaquetas = new javax.swing.JLabel();
+        txtNumSerie = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
+        txtModelo = new javax.swing.JTextField();
+        cbEstado = new javax.swing.JComboBox<>();
+        bntSalvar = new javax.swing.JButton();
+        cbPele = new javax.swing.JComboBox<>();
+        cbBaqueta = new javax.swing.JComboBox<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(3, 28, 48));
+
+        lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(255, 255, 255));
+        lblNome.setText("Nome do Instrumento:");
+
+        lblnumSerie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblnumSerie.setForeground(new java.awt.Color(255, 255, 255));
+        lblnumSerie.setText("Número de Série:");
+
+        lblMarca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMarca.setForeground(new java.awt.Color(255, 255, 255));
+        lblMarca.setText("Marca:");
+
+        lblModelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblModelo.setForeground(new java.awt.Color(255, 255, 255));
+        lblModelo.setText("Modelo:");
+
+        lblEstadoDeConservacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEstadoDeConservacao.setForeground(new java.awt.Color(255, 255, 255));
+        lblEstadoDeConservacao.setText("Estado de Conservação");
+
+        lblPele.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPele.setForeground(new java.awt.Color(255, 255, 255));
+        lblPele.setText("Tipo de Pele");
+
+        lblBaquetas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblBaquetas.setForeground(new java.awt.Color(255, 255, 255));
+        lblBaquetas.setText("Tipo de Baqueta");
+
+        txtNumSerie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtMarca.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        txtModelo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionando", "Quebrado" }));
+
+        bntSalvar.setText("Salvar");
+        bntSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntSalvarActionPerformed(evt);
+            }
+        });
+
+        cbPele.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não usa pele", "Pele Animal (Couro)", "Pele Sintética (Plástico)", "Pele Filme Simples", "Pele Filme Duplo", "Pele Porosa", "Pele Hidráulica" }));
+
+        cbBaqueta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não usa baquetas", "Modelos Padrão (7A, 5A, 5B, 2B)", "Baqueta com Ponta de Madeira", "Baqueta com Ponta de Nylon", "Vassourinha (Brushes)", "Rodsticks (Baquetas de varetas)", "Maçaneta (Com ponta de feltro/lã)" }));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(lblNome)
+                        .addGap(19, 19, 19)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(lblnumSerie)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(lblMarca)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(lblModelo)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(lblBaquetas)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbBaqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPele)
+                            .addComponent(lblEstadoDeConservacao))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbPele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(64, 64, 64))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(lblNome))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblnumSerie))
+                    .addComponent(txtNumSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblMarca))
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(lblModelo))
+                    .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEstadoDeConservacao)
+                    .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbPele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPele))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBaquetas)
+                    .addComponent(cbBaqueta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
+        // TODO add your handling code here:
+
+        instrumento.setTipo("Percussão");
+        instrumento.setNome(txtNome.getText().trim());
+        instrumento.setNumSerie(txtNumSerie.getText().trim());
+        instrumento.setMarca(txtMarca.getText().trim());
+        instrumento.setModelo(txtModelo.getText().trim());
+
+        instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
+       
+        
+        if(cbBaqueta.getSelectedItem().toString().equals("Não usa baquetas")){
+            instrumento.setTipoBaqueta(null);
+        }else{
+            instrumento.setTipoBaqueta(cbBaqueta.getSelectedItem().toString());
+        }
+        
+        if(cbBaqueta.getSelectedItem().toString().equals("Não usa baquetas")){
+            instrumento.setTipoPele(null);
+        }else{
+            instrumento.setTipoPele(cbBaqueta.getSelectedItem().toString());
+        }
+  
+        
+        if (instrumento.getId() == null) {
+            instrumentoController.save(instrumento);
+        } else {
+            instrumentoController.update(instrumento);
+        }
+
+        this.dispose();
+
+    }//GEN-LAST:event_bntSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,11 +322,27 @@ public class CadastroInstrumentoPercussivo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroInstrumentoPercussivo().setVisible(true);
+              
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntSalvar;
+    private javax.swing.JComboBox<String> cbBaqueta;
+    private javax.swing.JComboBox<String> cbEstado;
+    private javax.swing.JComboBox<String> cbPele;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBaquetas;
+    private javax.swing.JLabel lblEstadoDeConservacao;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblModelo;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPele;
+    private javax.swing.JLabel lblnumSerie;
+    private javax.swing.JTextField txtMarca;
+    private javax.swing.JTextField txtModelo;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNumSerie;
     // End of variables declaration//GEN-END:variables
 }

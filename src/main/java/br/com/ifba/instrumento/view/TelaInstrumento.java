@@ -223,12 +223,10 @@ public class TelaInstrumento extends javax.swing.JFrame {
 
         background.setBackground(new java.awt.Color(3, 28, 48));
         background.setForeground(new java.awt.Color(3, 28, 48));
-        background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Instrumentos");
-        background.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, -1, -1));
 
         bntCadastrarMadeira.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bntCadastrarMadeira.setText("Instrumento de Madeira");
@@ -237,7 +235,6 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 bntCadastrarMadeiraActionPerformed(evt);
             }
         });
-        background.add(bntCadastrarMadeira, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 194, 199, -1));
 
         bntCadastrarMetal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bntCadastrarMetal.setText("Instrumento de Metal");
@@ -246,7 +243,6 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 bntCadastrarMetalActionPerformed(evt);
             }
         });
-        background.add(bntCadastrarMetal, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 249, 199, -1));
 
         bntCadastrarPercussao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bntCadastrarPercussao.setText("Instrumento Percussivo");
@@ -255,12 +251,10 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 bntCadastrarPercussaoActionPerformed(evt);
             }
         });
-        background.add(bntCadastrarPercussao, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 307, 199, -1));
 
         lblCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         lblCadastrar.setText("Cadastrar Instrumentos");
-        background.add(lblCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 151, -1, -1));
 
         tblInstrumentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -275,19 +269,15 @@ public class TelaInstrumento extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblInstrumentos);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 151, 831, 500));
-
         txtPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPesquisarActionPerformed(evt);
             }
         });
-        background.add(txtPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 111, 180, -1));
 
         lblPesquisa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPesquisa.setForeground(new java.awt.Color(255, 255, 255));
         lblPesquisa.setText("Pesquisa por Nome do instrumento:");
-        background.add(lblPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 80, -1, -1));
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum", "Madeira", "Metal", "Percussão" }));
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -295,7 +285,6 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 cbTipoActionPerformed(evt);
             }
         });
-        background.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 111, -1, -1));
 
         cbAfinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nenhum", "Dó", "Si Bemol", "Mi Bemol", "Fá", "Sem Afinação" }));
         cbAfinacao.addActionListener(new java.awt.event.ActionListener() {
@@ -303,22 +292,18 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 cbAfinacaoActionPerformed(evt);
             }
         });
-        background.add(cbAfinacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(1058, 111, -1, -1));
 
         lblFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblFiltro.setForeground(new java.awt.Color(255, 255, 255));
         lblFiltro.setText("Filtros:");
-        background.add(lblFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 70, -1, -1));
 
         lblTipo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTipo.setForeground(new java.awt.Color(255, 255, 255));
         lblTipo.setText("Tipo:");
-        background.add(lblTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(945, 85, -1, -1));
 
         lblAfinação.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblAfinação.setForeground(new java.awt.Color(255, 255, 255));
         lblAfinação.setText("Afinação:");
-        background.add(lblAfinação, new org.netbeans.lib.awtextra.AbsoluteConstraints(1058, 85, -1, -1));
 
         bntAtualizarLista.setText("Atualizar Lista");
         bntAtualizarLista.addActionListener(new java.awt.event.ActionListener() {
@@ -326,7 +311,81 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 bntAtualizarListaActionPerformed(evt);
             }
         });
-        background.add(bntAtualizarLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 680, -1, -1));
+
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(630, 630, 630)
+                .addComponent(lblTitulo))
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(334, 334, 334)
+                .addComponent(lblPesquisa)
+                .addGap(365, 365, 365)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFiltro)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(lblTipo)))
+                .addGap(73, 73, 73)
+                .addComponent(lblAfinação))
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(334, 334, 334)
+                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(431, 431, 431)
+                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCadastrar)
+                    .addComponent(bntCadastrarMadeira, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bntCadastrarMetal, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bntCadastrarPercussao, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 831, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(340, 340, 340)
+                .addComponent(bntAtualizarLista))
+        );
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblPesquisa))
+                    .addComponent(lblFiltro)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(lblTipo))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(lblAfinação)))
+                .addGap(6, 6, 6)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(lblCadastrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(bntCadastrarMadeira)
+                        .addGap(28, 28, 28)
+                        .addComponent(bntCadastrarMetal)
+                        .addGap(31, 31, 31)
+                        .addComponent(bntCadastrarPercussao))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(bntAtualizarLista))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -346,19 +405,28 @@ public class TelaInstrumento extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CadastroInstrumentoMadeira cadastroMadeiras = new CadastroInstrumentoMadeira(instrumentoController);
-    
         cadastroMadeiras.setVisible(true);
-
         listarInstrumentos();
         
     }//GEN-LAST:event_bntCadastrarMadeiraActionPerformed
 
     private void bntCadastrarMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarMetalActionPerformed
         // TODO add your handling code here:
+        
+        
+        CadastroInstrumentoMetal cadastroMetal = new CadastroInstrumentoMetal(instrumentoController);
+        cadastroMetal.setVisible(true);
+        listarInstrumentos();
+        
     }//GEN-LAST:event_bntCadastrarMetalActionPerformed
 
     private void bntCadastrarPercussaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarPercussaoActionPerformed
         // TODO add your handling code here:
+        
+        CadastroInstrumentoPercussivo cadastroPercussao = new CadastroInstrumentoPercussivo(instrumentoController);
+        cadastroPercussao.setVisible(true);
+        listarInstrumentos();
+        
     }//GEN-LAST:event_bntCadastrarPercussaoActionPerformed
 
     private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed

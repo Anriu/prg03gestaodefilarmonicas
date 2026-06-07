@@ -16,13 +16,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class InstrumentoPercussao extends Instrumento {
 
-    /**
-     * Tipo de pele utilizada pelo instrumento.
-     */
+ 
+    //Tipo de pele utilizada pelo instrumento.
     private String tipoPele;
 
-    /**
-     * Tipo de baqueta utilizada pelo instrumento.
-     */
+    //Tipo de baqueta utilizada pelo instrumento.
     private String tipoBaqueta;
 }

@@ -6,6 +6,7 @@ import br.com.ifba.instrumento.entity.InstrumentoMadeira;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
 import br.com.ifba.instrumento.entity.InstrumentoPercussao;
 import br.com.ifba.instrumento.view.CadastroInstrumentoMadeira;
+import br.com.ifba.instrumento.view.CadastroInstrumentoMetal;
 import br.com.ifba.instrumento.view.CadastroInstrumentoPercussivo;
 import java.awt.Component;
 import javax.swing.*;
@@ -25,7 +26,11 @@ public class ButtonEditor extends DefaultCellEditor {
     private int row;
     private JTable table;
     private Object valor;
-
+    
+    private int excluir = 5;
+    private int editar = 4;
+    private int verDetalhes = 3;
+    
     /**
      * Inicializa o editor responsável pelo tratamento das ações
      * executadas a partir dos botões da tabela.
@@ -108,12 +113,10 @@ public class ButtonEditor extends DefaultCellEditor {
                 new CadastroInstrumentoMadeira((InstrumentoMadeira) instrumento, instrumentoController).setVisible(true);
             }
             else if (instrumento.getTipo().equals("Metal")) {
-                // Implementação da tela de edição para instrumentos metálicos.
-                //new br.com.ifba.instrumento.view.CadstrolnstrumentoMetal((InstrumentoMetal) instrumento, instrumentoController).setVisible(true);
+                new CadastroInstrumentoMetal((InstrumentoMetal) instrumento, instrumentoController).setVisible(true);
             }
             else if (instrumento.getTipo().equals("Percussão")) {
-                // Implementação da tela de edição para instrumentos de percussão.
-                //new CadastroInstrumentoPercussivo((InstrumentoPercussao) instrumento, instrumentoController).setVisible(true);
+                new CadastroInstrumentoPercussivo((InstrumentoPercussao) instrumento, instrumentoController).setVisible(true);
             }
         }
 

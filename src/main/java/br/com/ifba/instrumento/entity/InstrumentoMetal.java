@@ -20,4 +20,5 @@ public class InstrumentoMetal extends InstrumentoSopro {
      * Quantidade de pistões ou válvulas presentes no instrumento.
      */
     private Integer qtdPistoes;
+    private boolean possuiRotor;
 }

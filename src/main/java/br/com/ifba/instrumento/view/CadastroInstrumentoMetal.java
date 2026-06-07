@@ -1,27 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.ifba.instrumento.view;
 
 import br.com.ifba.instrumento.controller.InstrumentoIController;
-import br.com.ifba.instrumento.entity.InstrumentoMadeira;
+import br.com.ifba.instrumento.entity.InstrumentoMetal;
 
 /**
+ *
  * @author anriu
  */
-public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
+public class CadastroInstrumentoMetal extends javax.swing.JFrame {
 
-    
-    private InstrumentoMadeira instrumento;
+    private InstrumentoMetal instrumento;
     private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
     
     /**
-     * Creates new form CadastroMadeira
-     * @param instrumentoController
+     * Creates new form CadstroMetal
      */
-    
-    public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController) {
+    public CadastroInstrumentoMetal(InstrumentoIController instrumentoController) {
         initComponents();
         
         setDefaultCloseOperation(
@@ -30,11 +24,10 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
         this.instrumentoController = instrumentoController;
 
-        this.instrumento = new InstrumentoMadeira();
-        
-        
+        this.instrumento = new InstrumentoMetal();
     }
-    public CadastroInstrumentoMadeira(InstrumentoMadeira instrumento, InstrumentoIController instrumentoController) {
+
+    public CadastroInstrumentoMetal(InstrumentoMetal instrumento, InstrumentoIController instrumentoController) {
 
         initComponents();
 
@@ -53,14 +46,18 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
         cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
         cbAfinacao.setSelectedItem(instrumento.getAfinacao());
+        spnQuantidadePistons.setValue(instrumento.getQtdPistoes());
         
-        if(instrumento.getTipoPalheta() != null){
-           cbPalheta.setSelectedItem(instrumento.getTipoPalheta()); 
-        }else{
-           cbPalheta.setSelectedItem("Não usa Palheta");
+        if (instrumento.isPossuiRotor()) {
+            cbRotor.setSelectedItem("Sim");
+        } else {
+            cbRotor.setSelectedItem("Não");
         }
-        
+ 
     }
+    
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,10 +83,11 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         cbEstado = new javax.swing.JComboBox<>();
         bntSalvar = new javax.swing.JButton();
         cbAfinacao = new javax.swing.JComboBox<>();
-        cbPalheta = new javax.swing.JComboBox<>();
+        spnQuantidadePistons = new javax.swing.JSpinner();
+        lblPalheta1 = new javax.swing.JLabel();
+        cbRotor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(3, 28, 48));
 
@@ -119,7 +117,7 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
         lblPalheta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblPalheta.setForeground(new java.awt.Color(255, 255, 255));
-        lblPalheta.setText("Tipo de Palheta:");
+        lblPalheta.setText("Quantidade de Pistons:");
 
         txtNumSerie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
@@ -140,7 +138,13 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
         cbAfinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dó", "Si Bemol", "Mi Bemol" }));
 
-        cbPalheta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não usa Palheta", "Palheta Simples", "Palheta Dupla" }));
+        spnQuantidadePistons.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
+
+        lblPalheta1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPalheta1.setForeground(new java.awt.Color(255, 255, 255));
+        lblPalheta1.setText("Possui Rotor:");
+
+        cbRotor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não", "Sim" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,17 +178,17 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(lblAfinacao)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(lblPalheta)
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPalheta)
+                            .addComponent(lblAfinacao)
+                            .addComponent(lblPalheta1))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spnQuantidadePistons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbPalheta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cbRotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(64, 64, 64))
         );
         jPanel1Layout.setVerticalGroup(
@@ -223,49 +227,73 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
                     .addComponent(lblAfinacao)
                     .addComponent(cbAfinacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPalheta)
-                    .addComponent(cbPalheta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spnQuantidadePistons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPalheta))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPalheta1)
+                    .addComponent(cbRotor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(bntSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addGap(43, 43, 43))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bntSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSalvarActionPerformed
         // TODO add your handling code here:
-        
-        
 
-        instrumento.setTipo("Madeira");
+        
+        instrumento.setTipo("Metal");
         instrumento.setNome(txtNome.getText().trim());
         instrumento.setNumSerie(txtNumSerie.getText().trim());
         instrumento.setMarca(txtMarca.getText().trim());
         instrumento.setModelo(txtModelo.getText().trim());
-
- 
         instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
         instrumento.setAfinacao(cbAfinacao.getSelectedItem().toString());
-    
-       
-        if(cbPalheta.getSelectedItem().toString().equals("Não usa Palheta")){
-            instrumento.setTipoPalheta(null);
+        
+        
+        
+        instrumento.setQtdPistoes((Integer) spnQuantidadePistons.getValue());
+        
+        if(cbRotor.getSelectedItem().toString().equals("Sim")){
+           instrumento.setPossuiRotor(true); 
         }else{
-            instrumento.setTipoPalheta(cbPalheta.getSelectedItem().toString());
-        }        
-
+           instrumento.setPossuiRotor(false); 
+        }
+  
+        
         if (instrumento.getId() == null) {
-            instrumentoController.save(instrumento); 
+            instrumentoController.save(instrumento);
         } else {
-            instrumentoController.update(instrumento); 
+            instrumentoController.update(instrumento);
         }
 
         this.dispose();
-        
+
     }//GEN-LAST:event_bntSalvarActionPerformed
 
     /**
@@ -285,21 +313,23 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoMadeira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoMetal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoMadeira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoMetal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoMadeira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoMetal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroInstrumentoMadeira.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroInstrumentoMetal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+           
             }
         });
     }
@@ -308,7 +338,7 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
     private javax.swing.JButton bntSalvar;
     private javax.swing.JComboBox<String> cbAfinacao;
     private javax.swing.JComboBox<String> cbEstado;
-    private javax.swing.JComboBox<String> cbPalheta;
+    private javax.swing.JComboBox<String> cbRotor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAfinacao;
     private javax.swing.JLabel lblEstadoDeConservacao;
@@ -316,7 +346,9 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPalheta;
+    private javax.swing.JLabel lblPalheta1;
     private javax.swing.JLabel lblnumSerie;
+    private javax.swing.JSpinner spnQuantidadePistons;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtNome;
