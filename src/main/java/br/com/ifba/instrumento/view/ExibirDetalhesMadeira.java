@@ -35,7 +35,8 @@ public class ExibirDetalhesMadeira extends javax.swing.JFrame {
         txtModelo.setText(instrumento.getModelo());
         txtConservacao.setText(instrumento.getEstadoConservacao());
         txtAfinacao.setText(instrumento.getTonalidade().getDescricao());
- 
+      
+
         if(instrumento.getTipoPalheta() != null){
            txtTipoPalheta.setText(instrumento.getTipoPalheta()); 
         }else{

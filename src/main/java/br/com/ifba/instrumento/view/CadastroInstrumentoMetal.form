@@ -301,15 +301,14 @@
         <Component class="javax.swing.JComboBox" name="cbAfinacao">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="D&#xf3;"/>
-                <StringItem index="1" value="Si Bemol"/>
-                <StringItem index="2" value="Mi Bemol"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbAfinacaoActionPerformed"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Tonalidade&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JSpinner" name="spnQuantidadePistons">

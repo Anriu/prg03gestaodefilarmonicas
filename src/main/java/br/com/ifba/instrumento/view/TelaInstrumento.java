@@ -114,32 +114,34 @@ public class TelaInstrumento extends javax.swing.JFrame {
         List<Instrumento> listaInstrumentos = instrumentoController.findAll();
 
         for (Instrumento instrumento : listaInstrumentos) {
-            String tipo = "";
-            String afinacao = "-"; 
+
+            String tipo;
+            String tonalidade = "-";
 
             if (instrumento instanceof InstrumentoMadeira) {
                 tipo = "Madeira";
-                afinacao = ((InstrumentoSopro) instrumento).getTonalidade().getDescricao();
-            } 
-            else if (instrumento instanceof InstrumentoMetal) {
+            } else if (instrumento instanceof InstrumentoMetal) {
                 tipo = "Metal";
-                afinacao = ((InstrumentoSopro) instrumento).getTonalidade().getDescricao();
-            } 
-            else if (instrumento instanceof InstrumentoPercussao) {
+            } else {
                 tipo = "Percussão";
+            }
+
+            if (instrumento instanceof InstrumentoSopro sopro
+                    && sopro.getTonalidade() != null) {
+                tonalidade = sopro.getTonalidade().getDescricao();
             }
 
             model.addRow(new Object[]{
                 tipo,                       // Coluna 0
                 instrumento.getNome(),      // Coluna 1
-                afinacao,                   // Coluna 2
+                tonalidade,                 // Coluna 2
                 "Ver Detalhes",             // Coluna 3
                 "Editar",                   // Coluna 4
                 "Excluir",                  // Coluna 5
                 instrumento.getId()         // Coluna 6
             });
         }
-    }
+}
     
     private void filtrar() {
         String texto = txtPesquisar.getText();

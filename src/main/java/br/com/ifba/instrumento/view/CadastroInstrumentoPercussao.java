@@ -278,7 +278,7 @@ public class CadastroInstrumentoPercussao extends javax.swing.JFrame {
         if(cbBaqueta.getSelectedItem().toString().equals("Não usa baquetas")){
             instrumento.setTipoPele(null);
         }else{
-            instrumento.setTipoPele(cbBaqueta.getSelectedItem().toString());
+            instrumento.setTipoPele(cbPele.getSelectedItem().toString());
         }
   
         

@@ -17,6 +17,15 @@ public enum Tonalidade {
         return descricao;
     }
 
+    public static Tonalidade fromDescricao(String descricao) {
+        for (Tonalidade tonalidade : values()) {
+            if (tonalidade.getDescricao().equals(descricao)) {
+                return tonalidade;
+            }
+        }
+        throw new IllegalArgumentException("Tonalidade inválida: " + descricao);
+    }
+
     @Override
     public String toString() {
         return descricao;

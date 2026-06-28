@@ -3,6 +3,7 @@ package br.com.ifba.instrumento.view;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
 import br.com.ifba.instrumento.entity.Tonalidade;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -18,6 +19,7 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
      */
     public CadastroInstrumentoMetal(InstrumentoIController instrumentoController) {
         initComponents();
+        cbAfinacao.setModel(new DefaultComboBoxModel<>(Tonalidade.values()));
         
         setDefaultCloseOperation(
               javax.swing.WindowConstants.DISPOSE_ON_CLOSE
@@ -137,7 +139,11 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
             }
         });
 
-        cbAfinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dó", "Si Bemol", "Mi Bemol" }));
+        cbAfinacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAfinacaoActionPerformed(evt);
+            }
+        });
 
         spnQuantidadePistons.setModel(new javax.swing.SpinnerNumberModel(0, 0, 4, 1));
 
@@ -274,11 +280,11 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
         instrumento.setMarca(txtMarca.getText().trim());
         instrumento.setModelo(txtModelo.getText().trim());
         instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
-        //instrumento.setTonalidade((Tonalidade) cbAfinacao.getSelectedItem());
-        
-        
-        
         instrumento.setQtdPistoes((Integer) spnQuantidadePistons.getValue());
+        
+        instrumento.setTonalidade(
+            Tonalidade.fromDescricao(cbAfinacao.getSelectedItem().toString())
+        );
         
         if(cbRotor.getSelectedItem().toString().equals("Sim")){
            instrumento.setPossuiRotor(true); 
@@ -296,6 +302,10 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_bntSalvarActionPerformed
+
+    private void cbAfinacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAfinacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAfinacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,7 +347,7 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntSalvar;
-    private javax.swing.JComboBox<String> cbAfinacao;
+    private javax.swing.JComboBox<Tonalidade> cbAfinacao;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbRotor;
     private javax.swing.JPanel jPanel1;

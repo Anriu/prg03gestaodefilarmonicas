@@ -7,6 +7,7 @@ package br.com.ifba.instrumento.view;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
 import br.com.ifba.instrumento.entity.Tonalidade;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  * @author anriu
@@ -23,6 +24,7 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
     
     public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController) {
         initComponents();
+        cbAfinacao.setModel(new DefaultComboBoxModel<>(Tonalidade.values()));
         
         setDefaultCloseOperation(
               javax.swing.WindowConstants.DISPOSE_ON_CLOSE
@@ -139,8 +141,6 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
             }
         });
 
-        cbAfinacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dó", "Si Bemol", "Mi Bemol" }));
-
         cbPalheta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não usa Palheta", "Palheta Simples", "Palheta Dupla" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -247,12 +247,14 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         instrumento.setNumSerie(txtNumSerie.getText().trim());
         instrumento.setMarca(txtMarca.getText().trim());
         instrumento.setModelo(txtModelo.getText().trim());
-
- 
         instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
-        instrumento.setTonalidade((Tonalidade) cbAfinacao.getSelectedItem());
-    
-       
+        
+        instrumento.setTonalidade(
+            Tonalidade.fromDescricao(cbAfinacao.getSelectedItem().toString())
+        );
+        
+        
+        
         if(cbPalheta.getSelectedItem().toString().equals("Não usa Palheta")){
             instrumento.setTipoPalheta(null);
         }else{
@@ -307,7 +309,7 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntSalvar;
-    private javax.swing.JComboBox<String> cbAfinacao;
+    private javax.swing.JComboBox<Tonalidade> cbAfinacao;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JComboBox<String> cbPalheta;
     private javax.swing.JPanel jPanel1;
