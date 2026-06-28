@@ -119,11 +119,11 @@ public class TelaInstrumento extends javax.swing.JFrame {
 
             if (instrumento instanceof InstrumentoMadeira) {
                 tipo = "Madeira";
-                afinacao = ((InstrumentoSopro) instrumento).getAfinacao();
+                afinacao = ((InstrumentoSopro) instrumento).getTonalidade().getDescricao();
             } 
             else if (instrumento instanceof InstrumentoMetal) {
                 tipo = "Metal";
-                afinacao = ((InstrumentoSopro) instrumento).getAfinacao();
+                afinacao = ((InstrumentoSopro) instrumento).getTonalidade().getDescricao();
             } 
             else if (instrumento instanceof InstrumentoPercussao) {
                 tipo = "Percussão";
@@ -405,7 +405,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         
         CadastroInstrumentoMadeira cadastroMadeiras = new CadastroInstrumentoMadeira(instrumentoController);
         cadastroMadeiras.setVisible(true);
-        listarInstrumentos();
+
         
     }//GEN-LAST:event_bntCadastrarMadeiraActionPerformed
 
@@ -415,7 +415,6 @@ public class TelaInstrumento extends javax.swing.JFrame {
         
         CadastroInstrumentoMetal cadastroMetal = new CadastroInstrumentoMetal(instrumentoController);
         cadastroMetal.setVisible(true);
-        listarInstrumentos();
         
     }//GEN-LAST:event_bntCadastrarMetalActionPerformed
 
@@ -424,7 +423,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         
         CadastroInstrumentoPercussao cadastroPercussao = new CadastroInstrumentoPercussao(instrumentoController);
         cadastroPercussao.setVisible(true);
-        listarInstrumentos();
+        
         
     }//GEN-LAST:event_bntCadastrarPercussaoActionPerformed
 

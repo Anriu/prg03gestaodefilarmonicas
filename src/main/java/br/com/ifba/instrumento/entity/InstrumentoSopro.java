@@ -1,6 +1,8 @@
 package br.com.ifba.instrumento.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +20,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public abstract class InstrumentoSopro extends Instrumento {
 
-    private String afinacao;
+    @Enumerated(EnumType.STRING)
+    private Tonalidade tonalidade;
 
 }

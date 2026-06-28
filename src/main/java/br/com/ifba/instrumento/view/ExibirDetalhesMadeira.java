@@ -25,7 +25,7 @@ public class ExibirDetalhesMadeira extends javax.swing.JFrame {
                 javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
 
-        this.instrumento = instrumento;
+        this.instrumento = instrumento;  
         this.instrumentoController = instrumentoController;
 
 
@@ -34,7 +34,7 @@ public class ExibirDetalhesMadeira extends javax.swing.JFrame {
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
         txtConservacao.setText(instrumento.getEstadoConservacao());
-        txtAfinacao.setText(instrumento.getAfinacao());
+        txtAfinacao.setText(instrumento.getTonalidade().getDescricao());
  
         if(instrumento.getTipoPalheta() != null){
            txtTipoPalheta.setText(instrumento.getTipoPalheta()); 

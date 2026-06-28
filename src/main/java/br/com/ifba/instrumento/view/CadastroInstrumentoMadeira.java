@@ -6,13 +6,13 @@ package br.com.ifba.instrumento.view;
 
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
+import br.com.ifba.instrumento.entity.Tonalidade;
 
 /**
  * @author anriu
  */
 public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
-    
     private InstrumentoMadeira instrumento;
     private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
     
@@ -52,13 +52,14 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         txtModelo.setText(instrumento.getModelo());
 
         cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
-        cbAfinacao.setSelectedItem(instrumento.getAfinacao());
+        cbAfinacao.setSelectedItem(instrumento.getTonalidade().getDescricao());
         
         if(instrumento.getTipoPalheta() != null){
            cbPalheta.setSelectedItem(instrumento.getTipoPalheta()); 
         }else{
            cbPalheta.setSelectedItem("Não usa Palheta");
         }
+
         
     }
     
@@ -249,7 +250,7 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
  
         instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
-        instrumento.setAfinacao(cbAfinacao.getSelectedItem().toString());
+        instrumento.setTonalidade((Tonalidade) cbAfinacao.getSelectedItem());
     
        
         if(cbPalheta.getSelectedItem().toString().equals("Não usa Palheta")){
@@ -263,7 +264,7 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         } else {
             instrumentoController.update(instrumento); 
         }
-
+            
         this.dispose();
         
     }//GEN-LAST:event_bntSalvarActionPerformed

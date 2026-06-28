@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
  *
  * @author anriu
  */
+@Entity
 @Table(name = "tb_instrumento_metal")
 @Data
 @EqualsAndHashCode(callSuper = true)

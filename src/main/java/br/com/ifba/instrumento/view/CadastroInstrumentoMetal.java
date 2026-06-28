@@ -2,6 +2,7 @@ package br.com.ifba.instrumento.view;
 
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
+import br.com.ifba.instrumento.entity.Tonalidade;
 
 /**
  *
@@ -45,7 +46,7 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
         txtModelo.setText(instrumento.getModelo());
 
         cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
-        cbAfinacao.setSelectedItem(instrumento.getAfinacao());
+        cbAfinacao.setSelectedItem(instrumento.getTonalidade().getDescricao());
         spnQuantidadePistons.setValue(instrumento.getQtdPistoes());
         
         if (instrumento.isPossuiRotor()) {
@@ -273,7 +274,7 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
         instrumento.setMarca(txtMarca.getText().trim());
         instrumento.setModelo(txtModelo.getText().trim());
         instrumento.setEstadoConservacao(cbEstado.getSelectedItem().toString());
-        instrumento.setAfinacao(cbAfinacao.getSelectedItem().toString());
+        //instrumento.setTonalidade((Tonalidade) cbAfinacao.getSelectedItem());
         
         
         

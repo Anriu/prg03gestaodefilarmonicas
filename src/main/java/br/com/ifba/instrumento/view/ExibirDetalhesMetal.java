@@ -29,7 +29,7 @@ public class ExibirDetalhesMetal extends javax.swing.JFrame {
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
         txtConservacao.setText(instrumento.getEstadoConservacao());
-        txtAfinacao.setText(instrumento.getAfinacao());
+        txtAfinacao.setText(instrumento.getTonalidade().getDescricao());
         txtQuantidadePistons.setText(instrumento.getQtdPistoes().toString());
         
         
