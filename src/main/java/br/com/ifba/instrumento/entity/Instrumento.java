@@ -1,9 +1,13 @@
 package br.com.ifba.instrumento.entity;
 
 import br.com.ifba.infrastructure.entity.PersistenceEntity;
+import br.com.ifba.pessoa.entity.Aluno;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,5 +35,9 @@ public abstract class Instrumento extends PersistenceEntity {
     private String marca;
     private String modelo;
     private String estadoConservacao;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "aluno_id")
+    private Aluno alunoResponsavel;
 
 }
