@@ -1,7 +1,7 @@
 package br.com.ifba.instrumento.entity;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,13 +11,11 @@ import lombok.EqualsAndHashCode;
  * @author anriu
  */
 @Entity
-@DiscriminatorValue("MADEIRA")
+@Table(name = "tb_instrumento_madeira")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class InstrumentoMadeira extends InstrumentoSopro {
 
-    /**
-     * Tipo de palheta utilizada pelo instrumento.
-     */
     private String tipoPalheta;
+
 }

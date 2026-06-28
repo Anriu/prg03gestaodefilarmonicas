@@ -1,8 +1,6 @@
 package br.com.ifba.instrumento.entity;
 
 import br.com.ifba.infrastructure.entity.PersistenceEntity;
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -22,8 +20,7 @@ import lombok.EqualsAndHashCode;
  */
 @Entity
 @Table(name = "tb_instrumento")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo_instrumento", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @EqualsAndHashCode(callSuper = true)
 public abstract class Instrumento extends PersistenceEntity {
@@ -34,4 +31,5 @@ public abstract class Instrumento extends PersistenceEntity {
     private String marca;
     private String modelo;
     private String estadoConservacao;
+
 }

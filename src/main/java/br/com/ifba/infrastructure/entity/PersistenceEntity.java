@@ -11,13 +11,13 @@ import lombok.Setter;
  *
  * @author anriu
  */
+@MappedSuperclass
 @Getter
 @Setter
-@MappedSuperclass
-public class PersistenceEntity {
+public abstract class PersistenceEntity {
 
-    // ID único da entidade
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
 }

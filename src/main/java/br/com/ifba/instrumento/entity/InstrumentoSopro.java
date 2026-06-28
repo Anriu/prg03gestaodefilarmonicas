@@ -1,6 +1,7 @@
 package br.com.ifba.instrumento.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,12 +13,11 @@ import lombok.EqualsAndHashCode;
  * @author anriu
  */
 @Entity
+@Table(name = "tb_instrumento_sopro")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public abstract class InstrumentoSopro extends Instrumento {
 
-    /**
-     * Afinação principal do instrumento.
-     */
     private String afinacao;
+
 }

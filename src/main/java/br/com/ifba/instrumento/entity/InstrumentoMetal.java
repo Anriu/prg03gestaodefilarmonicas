@@ -1,7 +1,7 @@
 package br.com.ifba.instrumento.entity;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -10,15 +10,13 @@ import lombok.EqualsAndHashCode;
  *
  * @author anriu
  */
-@Entity
-@DiscriminatorValue("METAL")
+@Table(name = "tb_instrumento_metal")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class InstrumentoMetal extends InstrumentoSopro {
 
-    /**
-     * Quantidade de pistões ou válvulas presentes no instrumento.
-     */
     private Integer qtdPistoes;
+
     private boolean possuiRotor;
+
 }
