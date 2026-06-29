@@ -1,27 +1,27 @@
 package br.com.ifba.fardamento.controller;
 
-import br.com.ifba.fardamento.entity.Talaba;
+import br.com.ifba.fardamento.entity.Cordao;
 import java.util.List;
 
 /**
- * Interface de contrato para o Controller de talaba.
+ * Interface de contrato para o Controller de cordao.
  * * @author anriu
  */
 
-public interface TalabaIController {
+public interface CordaoIController {
 
     // Salva um novo instrumento
-    Talaba save(Talaba talaba);
+    Cordao save(Cordao cordao);
 
     // Atualiza os dados de um instrumento
-    Talaba update(Talaba talaba);
+    Cordao update(Cordao cordao);
 
     // Remove um instrumento
-    void delete(Talaba talaba);
+    void delete(Cordao cordao);
 
     // Retorna todos os instrumentos cadastrados
-    List<Talaba> findAll();
+    List<Cordao> findAll();
 
     // Busca um instrumento pelo ID
-    Talaba findById(Long id);
+    Cordao findById(Long id);
 }

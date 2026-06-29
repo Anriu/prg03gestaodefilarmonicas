@@ -15,6 +15,6 @@ import lombok.EqualsAndHashCode;
 @Table(name = "tb_talaba")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Talaba extends PersistenceEntity {
+public class Cordao extends PersistenceEntity {
 
 }

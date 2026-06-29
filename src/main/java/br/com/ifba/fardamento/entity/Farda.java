@@ -38,7 +38,7 @@ public class Farda extends PersistenceEntity {
 
     @OneToOne
     @JoinColumn(name = "talaba_id")
-    private Talaba talaba;
+    private Cordao cordao;
 
     @OneToOne
     @JoinColumn(name = "quepe_id")
