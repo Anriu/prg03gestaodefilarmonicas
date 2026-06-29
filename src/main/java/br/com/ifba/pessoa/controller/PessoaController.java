@@ -4,9 +4,10 @@
  */
 package br.com.ifba.pessoa.controller;
 
+import br.com.ifba.infrastructure.controller.GenericController;
+import br.com.ifba.infrastructure.service.GenericService;
 import br.com.ifba.pessoa.entity.Pessoa;
 import br.com.ifba.pessoa.service.PessoaIService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -14,36 +15,16 @@ import org.springframework.stereotype.Controller;
  *
  * @author anriu
  */
+
 @Controller
 @RequiredArgsConstructor
-public class PessoaController implements PessoaIController {
+public class PessoaController extends GenericController<Pessoa> implements PessoaIController {
 
-    private final PessoaIService pessoaService;
-    
+    private final PessoaIService blusaService;
+
     @Override
-    public Pessoa save(Pessoa pessoa) {
-        return pessoaService.save(pessoa);
+    protected GenericService<Pessoa> getService() {
+        return blusaService;
     }
 
-    @Override
-    public Pessoa update(Pessoa pessoa) {
-      return pessoaService.update(pessoa);
-    }
-
-    @Override
-    public void delete(Pessoa pessoa) {
-        pessoaService.delete(pessoa);
-    } 
-
-    @Override
-    public List<Pessoa> findAll() {
-       return pessoaService.findAll(); 
-    }
-
-    @Override
-    public Pessoa findById(Long id) {
-      return pessoaService.findById(id);
-    }
-    
 }
-

@@ -1,41 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.ifba.fardamento.controller;
 
 import br.com.ifba.fardamento.entity.Quepe;
-import java.util.List;
+import br.com.ifba.fardamento.service.QuepeIService;
+import br.com.ifba.infrastructure.controller.GenericController;
+import br.com.ifba.infrastructure.service.GenericService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author anriu
  */
-public class QuepeController implements QuepeIController{
+
+@Controller
+@RequiredArgsConstructor
+public class QuepeController extends GenericController<Quepe> implements QuepeIController {
+
+    private final QuepeIService blusaService;
 
     @Override
-    public Quepe save(Quepe quepe) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected GenericService<Quepe> getService() {
+        return blusaService;
     }
 
-    @Override
-    public Quepe update(Quepe quepe) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Quepe quepe) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Quepe> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Quepe findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

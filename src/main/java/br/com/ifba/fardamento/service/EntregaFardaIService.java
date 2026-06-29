@@ -1,21 +1,13 @@
 package br.com.ifba.fardamento.service;
 
 import br.com.ifba.fardamento.entity.EntregaFarda;
-import java.util.List;
+import br.com.ifba.infrastructure.service.GenericService;
 
 /**
  *
  * @author anriu
  */
-public interface EntregaFardaIService {
+public interface EntregaFardaIService extends GenericService<EntregaFarda>{
     
-    EntregaFarda save(EntregaFarda entregaFarda);
-    
-    EntregaFarda update(EntregaFarda entregaFarda);
-    
-    void delete(EntregaFarda entregaFarda);
-    
-    List<EntregaFarda> findAll();
-    
-    EntregaFarda findById(Long id);
+
 }

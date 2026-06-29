@@ -1,41 +1,46 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.ifba.fardamento.controller;
 
 import br.com.ifba.fardamento.entity.Farda;
+import br.com.ifba.fardamento.service.FardaIService;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 
-/**
- *
- * @author anriu
- */
-public class FardaController implements FardaIController{
+@Slf4j
+@Controller
+@RequiredArgsConstructor
+public class FardaController implements FardaIController {
+
+    private final FardaIService fardaService;
 
     @Override
     public Farda save(Farda farda) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        log.info("Controller recebeu solicitação para salvar farda");
+        return fardaService.save(farda);
     }
 
     @Override
     public Farda update(Farda farda) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        log.info("Controller recebeu solicitação para atualizar farda ID {}", farda.getId());
+        return fardaService.update(farda);
     }
 
     @Override
     public void delete(Farda farda) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        log.info("Controller recebeu solicitação para remover farda ID {}", farda.getId());
+        fardaService.delete(farda);
     }
 
     @Override
     public List<Farda> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        log.info("Controller recebeu solicitação para listar todas as fardas");
+        return fardaService.findAll();
     }
 
     @Override
     public Farda findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        log.info("Controller recebeu solicitação para buscar farda ID {}", id);
+        return fardaService.findById(id);
     }
-    
 }

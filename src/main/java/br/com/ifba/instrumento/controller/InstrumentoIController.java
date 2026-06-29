@@ -1,26 +1,13 @@
 package br.com.ifba.instrumento.controller;
 
 import br.com.ifba.instrumento.entity.Instrumento;
-import java.util.List;
+import br.com.ifba.infrastructure.controller.GenericIController;
 
 /**
  * Interface de contrato para o Controller de Instrumento.
  * * @author anriu
  */
-public interface InstrumentoIController {
 
-    // Salva um novo instrumento
-    Instrumento save(Instrumento instrumento);
+public interface InstrumentoIController extends GenericIController<Instrumento>{
 
-    // Atualiza os dados de um instrumento
-    Instrumento update(Instrumento instrumento);
-
-    // Remove um instrumento
-    void delete(Instrumento instrumento);
-
-    // Retorna todos os instrumentos cadastrados
-    List<Instrumento> findAll();
-
-    // Busca um instrumento pelo ID
-    Instrumento findById(Long id);
 }

@@ -1,37 +1,21 @@
 package br.com.ifba.fardamento.controller;
 
 import br.com.ifba.fardamento.entity.Blusa;
-import java.util.List;
+import br.com.ifba.fardamento.service.BlusaIService;
+import br.com.ifba.infrastructure.controller.GenericController;
+import br.com.ifba.infrastructure.service.GenericService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 
-/**
- *
- * @author anriu
- */
-public class BlusaController implements BlusaIController{
+@Controller
+@RequiredArgsConstructor
+public class BlusaController extends GenericController<Blusa> implements BlusaIController {
 
-    @Override
-    public Blusa save(Blusa blusa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Blusa update(Blusa blusa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    private final BlusaIService blusaService;
 
     @Override
-    public void delete(Blusa blusa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected GenericService<Blusa> getService() {
+        return blusaService;
     }
 
-    @Override
-    public List<Blusa> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Blusa findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

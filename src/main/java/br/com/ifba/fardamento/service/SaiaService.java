@@ -21,5 +21,5 @@ public class SaiaService extends GenericServiceImpl<Saia> implements SaiaIServic
     protected JpaRepository<Saia, Long> getRepository() {
         return repository;
     }
-    
+   
 }

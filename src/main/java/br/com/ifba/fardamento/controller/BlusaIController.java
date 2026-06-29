@@ -2,25 +2,13 @@ package br.com.ifba.fardamento.controller;
 
 import br.com.ifba.fardamento.entity.Blusa;
 import java.util.List;
+import br.com.ifba.infrastructure.controller.GenericIController;
 
 /**
  * Interface de contrato para o Controller de blusa.
  * * @author anriu
  */
-public interface BlusaIController {
+public interface BlusaIController extends GenericIController<Blusa>{
 
-    // Salva um novo instrumento
-    Blusa save(Blusa blusa);
 
-    // Atualiza os dados de um instrumento
-    Blusa update(Blusa blusa);
-
-    // Remove um instrumento
-    void delete(Blusa blusa);
-
-    // Retorna todos os instrumentos cadastrados
-    List<Blusa> findAll();
-
-    // Busca um instrumento pelo ID
-    Blusa findById(Long id);
 }

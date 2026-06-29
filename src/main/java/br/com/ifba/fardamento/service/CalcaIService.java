@@ -1,20 +1,12 @@
 package br.com.ifba.fardamento.service;
 
 import br.com.ifba.fardamento.entity.Calca;
-import java.util.List;
+import br.com.ifba.infrastructure.service.GenericService;
 
 /**
  *
  * @author anriu
  */
-public interface CalcaIService {
-    Calca save(Calca calca);
-    
-    Calca update(Calca calca);
-    
-    void delete(Calca calca);
-    
-    List<Calca> findAll();
-    
-    Calca findById(Long id);
+public interface CalcaIService extends GenericService<Calca> {
+
 }

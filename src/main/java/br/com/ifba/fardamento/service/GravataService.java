@@ -2,8 +2,9 @@ package br.com.ifba.fardamento.service;
 
 import br.com.ifba.fardamento.entity.Gravata;
 import br.com.ifba.fardamento.repository.GravataRepository;
-import java.util.List;
+import br.com.ifba.infrastructure.service.GenericServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,37 +13,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class GravataService implements GravataIService {
+public class GravataService extends GenericServiceImpl<Gravata> implements GravataIService {
 
-    // Injeção de dependência automática via Lombok do Repository genérico
-    private final GravataRepository gravataRepository;
-
-    @Override
-    public Gravata save(Gravata gravata) {
-        return gravataRepository.save(gravata);
-    }
+    private final GravataRepository repository;
 
     @Override
-    public Gravata update(Gravata gravata) {
-
-        return gravataRepository.save(gravata);
-    }
-
-    @Override
-    public void delete(Gravata gravata) {
-
-        gravataRepository.delete(gravata);
-    }
-
-    @Override
-    public List<Gravata> findAll() {
-
-        return gravataRepository.findAll();
-    }
-
-    @Override
-    public Gravata findById(Long id) {
-
-        return gravataRepository.findById(id).orElse(null);
+    protected JpaRepository<Gravata, Long> getRepository() {
+        return repository;
     }
 }

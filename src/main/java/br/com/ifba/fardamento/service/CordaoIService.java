@@ -4,10 +4,14 @@
  */
 package br.com.ifba.fardamento.service;
 
+import br.com.ifba.fardamento.entity.Cordao;
+import br.com.ifba.infrastructure.service.GenericService;
+
 /**
  *
  * @author anriu
  */
-public class CordaoIService {
+public interface CordaoIService extends GenericService<Cordao>{
     
+
 }

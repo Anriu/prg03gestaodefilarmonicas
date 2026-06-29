@@ -1,41 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.ifba.fardamento.controller;
 
 import br.com.ifba.fardamento.entity.Gravata;
-import java.util.List;
+import br.com.ifba.fardamento.service.GravataIService;
+import br.com.ifba.infrastructure.controller.GenericController;
+import br.com.ifba.infrastructure.service.GenericService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author anriu
  */
-public class GravataController implements GravataIController{
+
+@Controller
+@RequiredArgsConstructor
+public class GravataController extends GenericController<Gravata> implements GravataIController {
+
+    private final GravataIService blusaService;
 
     @Override
-    public Gravata save(Gravata gravata) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected GenericService<Gravata> getService() {
+        return blusaService;
     }
 
-    @Override
-    public Gravata update(Gravata gravata) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Gravata gravata) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Gravata> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Gravata findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

@@ -1,23 +1,14 @@
 package br.com.ifba.pessoa.controller;
 
 import br.com.ifba.pessoa.entity.Pessoa;
-import java.util.List;
+import br.com.ifba.infrastructure.controller.GenericIController;
 
 /**
  *
  * @author anriu
  */
 
-public interface PessoaIController {
+public interface PessoaIController extends GenericIController<Pessoa>{
    
-    Pessoa save(Pessoa pessoa);
-    
-    Pessoa update(Pessoa pessoa);
-    
-    void delete(Pessoa pessoa);
-    
-    List<Pessoa> findAll();
-    
-    Pessoa findById(Long id);
     
 }

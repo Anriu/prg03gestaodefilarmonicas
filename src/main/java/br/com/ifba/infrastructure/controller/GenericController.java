@@ -1,23 +1,65 @@
 package br.com.ifba.infrastructure.controller;
 
+import br.com.ifba.infrastructure.service.GenericService;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Interface genérica responsável pelas operações básicas de CRUD.
+ * Implementação genérica dos Controllers.
  *
  * @author anriu
  * @param <T> Tipo da entidade.
  */
-public interface GenericController<T> {
+@Slf4j
+public abstract class GenericController<T> implements GenericIController<T> {
 
-    T save(T entity);
+    protected abstract GenericService<T> getService();
 
-    T update(T entity);
+    private String getEntityName() {
+        return getService().getClass()
+                .getSimpleName()
+                .replace("Service", "")
+                .replace("IService", "");
+    }
 
-    void delete(T entity);
+    @Override
+    public T save(T entity) {
 
-    List<T> findAll();
+        log.info("Controller recebeu solicitação para salvar {}", getEntityName());
 
-    T findById(Long id);
+        return getService().save(entity);
+    }
+
+    @Override
+    public T update(T entity) {
+
+        log.info("Controller recebeu solicitação para atualizar {}", getEntityName());
+
+        return getService().update(entity);
+    }
+
+    @Override
+    public void delete(T entity) {
+
+        log.info("Controller recebeu solicitação para remover {}", getEntityName());
+
+        getService().delete(entity);
+    }
+
+    @Override
+    public List<T> findAll() {
+
+        log.info("Controller recebeu solicitação para listar {}", getEntityName());
+
+        return getService().findAll();
+    }
+
+    @Override
+    public T findById(Long id) {
+
+        log.info("Controller recebeu solicitação para buscar {} ID {}", getEntityName(), id);
+
+        return getService().findById(id);
+    }
 
 }
