@@ -2,8 +2,9 @@ package br.com.ifba.fardamento.service;
 
 import br.com.ifba.fardamento.entity.Farda;
 import br.com.ifba.fardamento.repository.FardaRepository;
-import java.util.List;
+import br.com.ifba.infrastructure.service.GenericServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,37 +13,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class FardaService implements FardaIService {
+public class FardaService extends GenericServiceImpl<Farda> implements FardaIService {
 
-    // Injeção de dependência automática via Lombok do Repository genérico
-    private final FardaRepository fardaRepository;
-
-    @Override
-    public Farda save(Farda farda) {
-        return fardaRepository.save(farda);
-    }
+    private final FardaRepository repository;
 
     @Override
-    public Farda update(Farda farda) {
-
-        return fardaRepository.save(farda);
-    }
-
-    @Override
-    public void delete(Farda farda) {
-
-        fardaRepository.delete(farda);
-    }
-
-    @Override
-    public List<Farda> findAll() {
-
-        return fardaRepository.findAll();
-    }
-
-    @Override
-    public Farda findById(Long id) {
-
-        return fardaRepository.findById(id).orElse(null);
+    protected JpaRepository<Farda, Long> getRepository() {
+        return repository;
     }
 }

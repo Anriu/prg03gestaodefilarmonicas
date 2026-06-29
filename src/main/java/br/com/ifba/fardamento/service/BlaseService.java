@@ -2,9 +2,9 @@ package br.com.ifba.fardamento.service;
 
 import br.com.ifba.fardamento.entity.Blase;
 import br.com.ifba.fardamento.repository.BlaseRepository;
-import br.com.ifba.pessoa.entity.Pessoa;
-import java.util.List;
+import br.com.ifba.infrastructure.service.GenericServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,41 +13,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class BlaseService implements BlaseIService {
-    
-    // Injeção de dependência automática via Lombok do Repository genérico
-    private final BlaseRepository blaseRepository;
- 
-    @Override
-    public Blase save(Blase blase) {
-        return blaseRepository.save(blase);
-    }
+public class BlaseService extends GenericServiceImpl<Blase> implements BlaseIService {
+
+    private final BlaseRepository repository;
 
     @Override
-    public Blase update(Blase blase) {
-
-
-        return blaseRepository.save(blase);
+    protected JpaRepository<Blase, Long> getRepository() {
+        return repository;
     }
-
-    @Override
-    public void delete(Blase blase) {
-
-
-        blaseRepository.delete(blase);
-    }
-
-    @Override
-    public List<Blase> findAll() {
-        
-        return blaseRepository.findAll();
-    }
-
-    @Override
-    public Blase findById(Long id) {
-
-        return blaseRepository.findById(id).orElse(null);
-    }
-
-    
 }

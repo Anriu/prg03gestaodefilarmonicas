@@ -2,8 +2,9 @@ package br.com.ifba.fardamento.service;
 
 import br.com.ifba.fardamento.entity.Saia;
 import br.com.ifba.fardamento.repository.SaiaRepository;
-import java.util.List;
+import br.com.ifba.infrastructure.service.GenericServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,37 +13,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @RequiredArgsConstructor
-public class SaiaService implements SaiaIService {
+public class SaiaService extends GenericServiceImpl<Saia> implements SaiaIService {
 
-    // Injeção de dependência automática via Lombok do Repository genérico
-    private final SaiaRepository saiaRepository;
-
-    @Override
-    public Saia save(Saia saia) {
-        return saiaRepository.save(saia);
-    }
+    private final SaiaRepository repository;
 
     @Override
-    public Saia update(Saia saia) {
-
-        return saiaRepository.save(saia);
+    protected JpaRepository<Saia, Long> getRepository() {
+        return repository;
     }
-
-    @Override
-    public void delete(Saia saia) {
-
-        saiaRepository.delete(saia);
-    }
-
-    @Override
-    public List<Saia> findAll() {
-
-        return saiaRepository.findAll();
-    }
-
-    @Override
-    public Saia findById(Long id) {
-
-        return saiaRepository.findById(id).orElse(null);
-    }
+    
 }

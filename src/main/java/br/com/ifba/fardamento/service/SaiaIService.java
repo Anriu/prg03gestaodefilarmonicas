@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.ifba.fardamento.service;
+
+import br.com.ifba.fardamento.entity.Saia;
+import br.com.ifba.infrastructure.service.GenericService;
 
 /**
  *
  * @author anriu
  */
-public class SaiaIService {
-    
+public interface SaiaIService extends GenericService<Saia> {
+
 }
