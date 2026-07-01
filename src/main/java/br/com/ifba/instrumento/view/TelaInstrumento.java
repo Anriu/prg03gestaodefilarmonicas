@@ -6,9 +6,7 @@ import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.Instrumento;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
-import br.com.ifba.instrumento.entity.InstrumentoPercussao;
 import br.com.ifba.instrumento.entity.InstrumentoSopro;
-import jakarta.annotation.PostConstruct;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.RowFilter;
@@ -385,7 +383,8 @@ public class TelaInstrumento extends javax.swing.JFrame {
                         .addComponent(bntCadastrarPercussao))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addComponent(bntAtualizarLista))
+                .addComponent(bntAtualizarLista)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -396,7 +395,9 @@ public class TelaInstrumento extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
