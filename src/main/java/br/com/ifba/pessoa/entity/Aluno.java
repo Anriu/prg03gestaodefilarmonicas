@@ -1,5 +1,6 @@
 package br.com.ifba.pessoa.entity;
 
+import br.com.ifba.instrumento.entity.Instrumento;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Inheritance;
@@ -23,6 +24,10 @@ import lombok.EqualsAndHashCode;
 public class Aluno extends Pessoa {
 
     private String matricula;
+    
+    @ManyToOne
+    @JoinColumn(name = "instrumento_id")
+    private Instrumento instrumento;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "monitor_id")

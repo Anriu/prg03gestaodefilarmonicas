@@ -29,7 +29,7 @@ public class TelaPessoa extends javax.swing.JFrame {
         background = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPessoas = new javax.swing.JTable();
         bntCadastroMaestro = new javax.swing.JButton();
         bntCadastroAluno = new javax.swing.JButton();
         bntCadastroMusico = new javax.swing.JButton();
@@ -50,7 +50,7 @@ public class TelaPessoa extends javax.swing.JFrame {
         jLabel1.setText("Componentes da Banda");
         background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPessoas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -61,7 +61,7 @@ public class TelaPessoa extends javax.swing.JFrame {
                 "Nome", "Cargo", "Naipe", "Ver Detalhes", "Editar", "Excluir"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPessoas);
 
         background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 1080, -1));
 
@@ -142,6 +142,6 @@ public class TelaPessoa extends javax.swing.JFrame {
     private javax.swing.JButton bntCadastroMusico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPessoas;
     // End of variables declaration//GEN-END:variables
 }

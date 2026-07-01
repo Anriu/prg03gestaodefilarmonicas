@@ -24,12 +24,7 @@ public class MusicoBanda extends Aluno{
     
     
     private String naipe;
-    
-    @ManyToOne
-    @JoinColumn(name = "instrumento_id")
-    private Instrumento instrumento;
-    
-    
+   
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "farda_id")
     private Farda farda;
