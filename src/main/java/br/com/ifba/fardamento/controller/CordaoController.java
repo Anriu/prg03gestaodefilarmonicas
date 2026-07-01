@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class CordaoController extends GenericController<Cordao> implements CordaoIController {
 
-    private final CordaoIService blusaService;
+    private final CordaoIService cordaoService;
 
     @Override
     protected GenericService<Cordao> getService() {
-        return blusaService;
+        return cordaoService;
     }
 
 }

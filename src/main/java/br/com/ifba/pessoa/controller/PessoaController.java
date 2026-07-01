@@ -20,11 +20,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class PessoaController extends GenericController<Pessoa> implements PessoaIController {
 
-    private final PessoaIService blusaService;
+    private final PessoaIService pessoaService;
 
     @Override
     protected GenericService<Pessoa> getService() {
-        return blusaService;
+        return pessoaService;
     }
 
 }

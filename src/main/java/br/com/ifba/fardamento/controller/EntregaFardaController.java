@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class EntregaFardaController extends GenericController<EntregaFarda> implements EntregaFardaIController {
 
-    private final EntregaFardaIService blusaService;
+    private final EntregaFardaIService entregaFardaService;
 
     @Override
     protected GenericService<EntregaFarda> getService() {
-        return blusaService;
+        return entregaFardaService;
     }
 
 }

@@ -16,11 +16,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class GravataController extends GenericController<Gravata> implements GravataIController {
 
-    private final GravataIService blusaService;
+    private final GravataIService gravataService;
 
     @Override
     protected GenericService<Gravata> getService() {
-        return blusaService;
+        return gravataService;
     }
 
 }

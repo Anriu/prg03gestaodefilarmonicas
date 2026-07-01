@@ -1,7 +1,6 @@
 package br.com.ifba.fardamento.controller;
 
 import br.com.ifba.fardamento.entity.Blase;
-import br.com.ifba.fardamento.entity.Blusa;
 import br.com.ifba.fardamento.service.BlaseIService;
 import br.com.ifba.infrastructure.controller.GenericController;
 import br.com.ifba.infrastructure.service.GenericService;
@@ -19,11 +18,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class BlaseController extends GenericController<Blase> implements BlaseIController {
 
-    private final BlaseIService blusaService;
+    private final BlaseIService blaseService;
 
     @Override
     protected GenericService<Blase> getService() {
-        return blusaService;
+        return blaseService;
     }
 
 

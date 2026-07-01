@@ -16,11 +16,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class SaiaController extends GenericController<Saia> implements SaiaIController {
 
-    private final SaiaIService blusaService;
+    private final SaiaIService saiaService;
 
     @Override
     protected GenericService<Saia> getService() {
-        return blusaService;
+        return saiaService;
     }
 
 }

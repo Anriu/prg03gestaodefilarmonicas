@@ -17,11 +17,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class InstrumentoController extends GenericController<Instrumento> implements InstrumentoIController {
 
-    private final InstrumentoIService blusaService;
+    private final InstrumentoIService instrumentoService;
 
     @Override
     protected GenericService<Instrumento> getService() {
-        return blusaService;
+        return instrumentoService;
     }
 
 }

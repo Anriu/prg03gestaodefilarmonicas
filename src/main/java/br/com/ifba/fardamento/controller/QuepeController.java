@@ -16,11 +16,11 @@ import org.springframework.stereotype.Controller;
 @RequiredArgsConstructor
 public class QuepeController extends GenericController<Quepe> implements QuepeIController {
 
-    private final QuepeIService blusaService;
+    private final QuepeIService quepeService;
 
     @Override
     protected GenericService<Quepe> getService() {
-        return blusaService;
+        return quepeService;
     }
 
 }
