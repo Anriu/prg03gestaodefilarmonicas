@@ -18,6 +18,9 @@ public class CadastroMaestro extends javax.swing.JFrame {
      */
     public CadastroMaestro() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

@@ -19,6 +19,9 @@ public class CadastroMusico extends javax.swing.JFrame {
      */
     public CadastroMusico() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

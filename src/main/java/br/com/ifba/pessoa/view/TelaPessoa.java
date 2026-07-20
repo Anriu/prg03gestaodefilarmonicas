@@ -18,6 +18,9 @@ public class TelaPessoa extends javax.swing.JFrame {
      */
     public TelaPessoa() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

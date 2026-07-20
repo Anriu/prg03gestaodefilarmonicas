@@ -18,6 +18,9 @@ public class CadastroDePecasIndividuais extends javax.swing.JFrame {
      */
     public CadastroDePecasIndividuais() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

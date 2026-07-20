@@ -18,6 +18,9 @@ public class CadastroDeFardamento extends javax.swing.JFrame {
      */
     public CadastroDeFardamento() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

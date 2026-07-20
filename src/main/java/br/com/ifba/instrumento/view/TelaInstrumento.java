@@ -39,12 +39,14 @@ public class TelaInstrumento extends javax.swing.JFrame {
      */
     public TelaInstrumento() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
         
-        
-        this.setSize(1280, 720);
+        /*this.setSize(1280, 720);
         this.setMinimumSize(new java.awt.Dimension(1024, 768));
         this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);*/
         
         
         tblInstrumentos.setRowHeight(35);

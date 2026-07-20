@@ -18,6 +18,9 @@ public class CadastroMonitor extends javax.swing.JFrame {
      */
     public CadastroMonitor() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

@@ -24,7 +24,10 @@ public class ExibirDetalhesPercussao extends javax.swing.JFrame {
      */
     public ExibirDetalhesPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
         initComponents();
-
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
+        
         this.instrumento = instrumento;
         this.instrumentoController = instrumentoController;
 

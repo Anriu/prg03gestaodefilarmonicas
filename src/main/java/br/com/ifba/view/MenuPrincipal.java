@@ -4,6 +4,10 @@
  */
 package br.com.ifba.view;
 
+import br.com.ifba.fardamento.view.TelaFardamentos;
+import br.com.ifba.instrumento.view.TelaInstrumento;
+import br.com.ifba.pessoa.view.CadastroMusico;
+import br.com.ifba.pessoa.view.TelaPessoa;
 import org.springframework.stereotype.Component;
 
 /**
@@ -33,14 +37,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         bntCadastroIntrumento = new javax.swing.JButton();
         bntCadastroMusicos = new javax.swing.JButton();
-        bntCadastroMaterial = new javax.swing.JButton();
+        bntCadastroPartitura = new javax.swing.JButton();
         bntCadastroFardamento = new javax.swing.JButton();
         lblFundo2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         bntVerAcervo = new javax.swing.JButton();
         bntVerAlunos = new javax.swing.JButton();
-        bntVerMonitores = new javax.swing.JButton();
+        bntVerFardamentos = new javax.swing.JButton();
         bntVerInstumentos = new javax.swing.JButton();
         lblFundo = new javax.swing.JLabel();
 
@@ -52,11 +56,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bntCadastroIntrumento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bntCadastroIntrumento.setText("Cadastrar instrumento");
+        bntCadastroIntrumento.setText("Entregar Instrumento");
+        bntCadastroIntrumento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bntCadastroIntrumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntCadastroIntrumentoActionPerformed(evt);
+            }
+        });
         jPanel3.add(bntCadastroIntrumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 173, 240, -1));
 
         bntCadastroMusicos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCadastroMusicos.setText("Cadastrar músicos");
+        bntCadastroMusicos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         bntCadastroMusicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntCadastroMusicosActionPerformed(evt);
@@ -64,17 +75,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel3.add(bntCadastroMusicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 253, 240, -1));
 
-        bntCadastroMaterial.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bntCadastroMaterial.setText("Cadastrar material");
-        bntCadastroMaterial.addActionListener(new java.awt.event.ActionListener() {
+        bntCadastroPartitura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bntCadastroPartitura.setText("Cadastrar partitura");
+        bntCadastroPartitura.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        bntCadastroPartitura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntCadastroMaterialActionPerformed(evt);
+                bntCadastroPartituraActionPerformed(evt);
             }
         });
-        jPanel3.add(bntCadastroMaterial, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 432, 240, -1));
+        jPanel3.add(bntCadastroPartitura, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 432, 240, -1));
 
         bntCadastroFardamento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCadastroFardamento.setText("Cadastrar fardamento");
+        bntCadastroFardamento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel3.add(bntCadastroFardamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 240, -1));
 
         lblFundo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo.png"))); // NOI18N
@@ -91,7 +104,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
-        lblTitulo.setText("Gestão da Banda");
+        lblTitulo.setText("Gestão de Banda");
         jPanel2.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         bntVerAcervo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -112,14 +125,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(bntVerAlunos, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 170, -1));
 
-        bntVerMonitores.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bntVerMonitores.setText("Fardamentos");
-        bntVerMonitores.addActionListener(new java.awt.event.ActionListener() {
+        bntVerFardamentos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bntVerFardamentos.setText("Fardamentos");
+        bntVerFardamentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntVerMonitoresActionPerformed(evt);
+                bntVerFardamentosActionPerformed(evt);
             }
         });
-        jPanel2.add(bntVerMonitores, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 170, -1));
+        jPanel2.add(bntVerFardamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 170, -1));
 
         bntVerInstumentos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntVerInstumentos.setText("Instrumentos");
@@ -139,29 +152,51 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bntCadastroMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastroMaterialActionPerformed
+    private void bntCadastroPartituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastroPartituraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bntCadastroMaterialActionPerformed
+        //CadastroPartitura tela = new CadastroPartitura();
+        //tela.setVisible(true);
+    }//GEN-LAST:event_bntCadastroPartituraActionPerformed
 
     private void bntCadastroMusicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastroMusicosActionPerformed
         // TODO add your handling code here:
+        CadastroMusico tela = new CadastroMusico();
+        tela.setVisible(true);
     }//GEN-LAST:event_bntCadastroMusicosActionPerformed
 
     private void bntVerAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVerAcervoActionPerformed
         // TODO add your handling code here:
+        //TelaAcervo tela = new TelaAcervo();
+        //tela.setVisible(true);
     }//GEN-LAST:event_bntVerAcervoActionPerformed
 
     private void bntVerAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVerAlunosActionPerformed
         // TODO add your handling code here:
+        TelaPessoa tela = new TelaPessoa();
+        tela.setVisible(true);
     }//GEN-LAST:event_bntVerAlunosActionPerformed
 
-    private void bntVerMonitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVerMonitoresActionPerformed
+    private void bntVerFardamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVerFardamentosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bntVerMonitoresActionPerformed
+        TelaFardamentos tela = new TelaFardamentos();
+        tela.setVisible(true);
+    }//GEN-LAST:event_bntVerFardamentosActionPerformed
 
     private void bntVerInstumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVerInstumentosActionPerformed
         // TODO add your handling code here:
+        
+        TelaInstrumento tela = new TelaInstrumento();
+        tela.setVisible(true);
+        
     }//GEN-LAST:event_bntVerInstumentosActionPerformed
+
+    private void bntCadastroIntrumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastroIntrumentoActionPerformed
+        // TODO add your handling code here:
+        
+        TelaInstrumento tela = new TelaInstrumento();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_bntCadastroIntrumentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,12 +236,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntCadastroFardamento;
     private javax.swing.JButton bntCadastroIntrumento;
-    private javax.swing.JButton bntCadastroMaterial;
     private javax.swing.JButton bntCadastroMusicos;
+    private javax.swing.JButton bntCadastroPartitura;
     private javax.swing.JButton bntVerAcervo;
     private javax.swing.JButton bntVerAlunos;
+    private javax.swing.JButton bntVerFardamentos;
     private javax.swing.JButton bntVerInstumentos;
-    private javax.swing.JButton bntVerMonitores;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblFundo;

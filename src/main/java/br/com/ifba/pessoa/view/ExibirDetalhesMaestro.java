@@ -18,6 +18,9 @@ public class ExibirDetalhesMaestro extends javax.swing.JFrame {
      */
     public ExibirDetalhesMaestro() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

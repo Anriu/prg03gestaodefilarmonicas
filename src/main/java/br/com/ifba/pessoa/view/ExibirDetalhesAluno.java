@@ -18,6 +18,9 @@ public class ExibirDetalhesAluno extends javax.swing.JFrame {
      */
     public ExibirDetalhesAluno() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

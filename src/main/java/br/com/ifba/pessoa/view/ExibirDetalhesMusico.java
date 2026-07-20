@@ -18,6 +18,9 @@ public class ExibirDetalhesMusico extends javax.swing.JFrame {
      */
     public ExibirDetalhesMusico() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

@@ -18,6 +18,9 @@ public class ExibirDetalhesMonitor extends javax.swing.JFrame {
      */
     public ExibirDetalhesMonitor() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**

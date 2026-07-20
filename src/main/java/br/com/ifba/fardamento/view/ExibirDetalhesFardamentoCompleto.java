@@ -19,6 +19,9 @@ public class ExibirDetalhesFardamentoCompleto extends javax.swing.JFrame {
      */
     public ExibirDetalhesFardamentoCompleto() {
         initComponents();
+        setDefaultCloseOperation(
+              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
     }
 
     /**
