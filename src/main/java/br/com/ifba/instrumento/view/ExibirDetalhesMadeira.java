@@ -6,44 +6,61 @@ package br.com.ifba.instrumento.view;
 
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
-
+@Component
+@Scope("prototype")
 public class ExibirDetalhesMadeira extends javax.swing.JFrame {
 
-    private InstrumentoMadeira instrumento;
-    private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
-    
+    private final InstrumentoMadeira instrumento;
+
     /**
      * Creates new form ExibirDetalhesMadeiras
+     * @param instrumento
      */
-    public ExibirDetalhesMadeira(InstrumentoMadeira instrumento, InstrumentoIController instrumentoController) {
+     
+    public ExibirDetalhesMadeira(InstrumentoMadeira instrumento) {
         initComponents();
+
         setDefaultCloseOperation(
-                javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+            javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
 
-        this.instrumento = instrumento;  
-        this.instrumentoController = instrumentoController;
+        this.instrumento = instrumento;
 
+        carregarDadosInstrumento();
+    }  
+
+    private void carregarDadosInstrumento() {
 
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
-        txtConservacao.setText(instrumento.getEstadoConservacao());
-        txtAfinacao.setText(instrumento.getTonalidade().getDescricao());
-      
 
-        if(instrumento.getTipoPalheta() != null){
-           txtTipoPalheta.setText(instrumento.getTipoPalheta()); 
-        }else{
-           txtTipoPalheta.setText("Não usa Palheta");
-        }   
+        txtConservacao.setText(
+                instrumento.getEstadoConservacao()
+        );
+
+        txtAfinacao.setText(
+                instrumento.getTonalidade().getDescricao()
+        );
+
+
+        if (instrumento.getTipoPalheta() != null) {
+            txtTipoPalheta.setText(
+                    instrumento.getTipoPalheta()
+            );
+        } else {
+            txtTipoPalheta.setText(
+                    "Não usa Palheta"
+            );
+        }
     }
 
     /**

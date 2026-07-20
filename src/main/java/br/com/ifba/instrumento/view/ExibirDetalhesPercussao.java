@@ -4,8 +4,8 @@
  */
 package br.com.ifba.instrumento.view;
 
-import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoPercussao;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,43 +13,68 @@ import org.springframework.stereotype.Component;
  * @author anriu
  */
 
-
+@Component
+@Scope("prototype")
 public class ExibirDetalhesPercussao extends javax.swing.JFrame {
 
     
     private InstrumentoPercussao instrumento;
-    private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
+
     /**
      * Creates new form ExibirDetalhesPercussao
+     * @param instrumento
      */
-    public ExibirDetalhesPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
+    
+    public ExibirDetalhesPercussao(InstrumentoPercussao instrumento) {
         initComponents();
         setDefaultCloseOperation(
               javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
         
-        this.instrumento = instrumento;
-        this.instrumentoController = instrumentoController;
+    
+        initComponents();
 
+        setDefaultCloseOperation(
+                javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
+
+        this.instrumento = instrumento;
+
+        carregarDadosInstrumento(); 
+    }
+    
+        private void carregarDadosInstrumento() {
 
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
-        txtConservacao.setText(instrumento.getEstadoConservacao());
 
-        
-        if(instrumento.getTipoPele() != null){
-           txtPele.setText(instrumento.getTipoPele());
-        }else{
-           txtPele.setText("Não possui pele");
-        } 
-        
-        if(instrumento.getTipoBaqueta() != null){
-           txtBaqueta.setText(instrumento.getTipoBaqueta());
-        }else{
-           txtBaqueta.setText("Não possui Baqueta");
-        } 
+        txtConservacao.setText(
+                instrumento.getEstadoConservacao()
+        );
+
+
+        if (instrumento.getTipoPele() != null) {
+            txtPele.setText(
+                    instrumento.getTipoPele()
+            );
+        } else {
+            txtPele.setText(
+                    "Não possui pele"
+            );
+        }
+
+
+        if (instrumento.getTipoBaqueta() != null) {
+            txtBaqueta.setText(
+                    instrumento.getTipoBaqueta()
+            );
+        } else {
+            txtBaqueta.setText(
+                    "Não possui baqueta"
+            );
+        }
     }
 
     /**

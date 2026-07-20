@@ -1,46 +1,61 @@
 package br.com.ifba.instrumento.view;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
+@Component
+@Scope("prototype")
 
 public class ExibirDetalhesMetal extends javax.swing.JFrame {
 
-    private InstrumentoMetal instrumento;
-    private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
+    private final InstrumentoMetal instrumento;
     /**
      * Creates new form ExibirDetalhesMetal
      */
-    public ExibirDetalhesMetal(InstrumentoMetal instrumento, InstrumentoIController instrumentoController) {
+    
+    public ExibirDetalhesMetal(InstrumentoMetal instrumento) {
         initComponents();
-        
-         setDefaultCloseOperation(
+
+        setDefaultCloseOperation(
                 javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
 
         this.instrumento = instrumento;
-        this.instrumentoController = instrumentoController;
+ 
 
+        carregarDadosInstrumento();   
+    }
+    
+    private void carregarDadosInstrumento() {
 
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
-        txtConservacao.setText(instrumento.getEstadoConservacao());
-        txtAfinacao.setText(instrumento.getTonalidade().getDescricao());
-        txtQuantidadePistons.setText(instrumento.getQtdPistoes().toString());
-        
-        
-        if(instrumento.isPossuiRotor() == true){
-           txtRotor.setText("Possui rotor");
-        }else{
-           txtRotor.setText("Não possui rotor");
-        } 
-        
+
+        txtConservacao.setText(
+                instrumento.getEstadoConservacao()
+        );
+
+        txtAfinacao.setText(
+                instrumento.getTonalidade().getDescricao()
+        );
+
+        txtQuantidadePistons.setText(
+                String.valueOf(instrumento.getQtdPistoes())
+        );
+
+
+        if (instrumento.isPossuiRotor()) {
+            txtRotor.setText("Possui rotor");
+        } else {
+            txtRotor.setText("Não possui rotor");
+        }
     }
 
     /**

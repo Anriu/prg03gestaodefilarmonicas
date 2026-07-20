@@ -12,33 +12,32 @@ import javax.swing.JCheckBox;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
 
-
+@Component
+@Scope("prototype")
 public class TelaInstrumento extends javax.swing.JFrame {
 
-   
+    private final InstrumentoIController instrumentoController;
+
     private TableRowSorter<DefaultTableModel> sorter;
 
-    @Autowired
-    private InstrumentoIController instrumentoController;
-
-    @Autowired
-    private ApplicationContext context;
-    
-
-    
     /**
      * Creates new form CadastroInsturmento
      */
-    public TelaInstrumento() {
+    public TelaInstrumento(InstrumentoIController instrumentoController) {
+        
+        this.instrumentoController = instrumentoController;
+        
         initComponents();
+        
+        
         setDefaultCloseOperation(
               javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
@@ -407,6 +406,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
     private void bntCadastrarMadeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarMadeiraActionPerformed
         // TODO add your handling code here:
         
+        System.out.println(instrumentoController);
         CadastroInstrumentoMadeira cadastroMadeiras = new CadastroInstrumentoMadeira(instrumentoController);
         cadastroMadeiras.setVisible(true);
 
@@ -490,7 +490,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaInstrumento().setVisible(true);
+                
             }
         });
     }

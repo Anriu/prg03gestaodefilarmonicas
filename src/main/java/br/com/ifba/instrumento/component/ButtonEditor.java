@@ -107,22 +107,19 @@ public class ButtonEditor extends DefaultCellEditor {
 
             if ("Madeira".equals(instrumento.getTipo())) {
                 new ExibirDetalhesMadeira(
-                        (InstrumentoMadeira) instrumento,
-                        instrumentoController
+                        (InstrumentoMadeira) instrumento
                 ).setVisible(true);
             }
             
             if ("Metal".equals(instrumento.getTipo())) {
                 new ExibirDetalhesMetal(
-                        (InstrumentoMetal) instrumento,
-                        instrumentoController
+                        (InstrumentoMetal) instrumento
                 ).setVisible(true);
             }
             
             if ("Percussão".equals(instrumento.getTipo())) {
                 new ExibirDetalhesPercussao(
-                        (InstrumentoPercussao) instrumento,
-                        instrumentoController
+                        (InstrumentoPercussao) instrumento
                 ).setVisible(true);
             }
 

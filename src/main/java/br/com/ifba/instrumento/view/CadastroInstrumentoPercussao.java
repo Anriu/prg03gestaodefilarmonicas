@@ -6,13 +6,15 @@ package br.com.ifba.instrumento.view;
 
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoPercussao;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
-
+@Component
+@Scope("prototype")
 public class CadastroInstrumentoPercussao extends javax.swing.JFrame {
 
     private InstrumentoPercussao instrumento;
@@ -21,52 +23,60 @@ public class CadastroInstrumentoPercussao extends javax.swing.JFrame {
     /**
      * Creates new form CadastroInstrumentoPercussivo
      */
-    public CadastroInstrumentoPercussao(InstrumentoIController instrumentoController) {
+        public CadastroInstrumentoPercussao(InstrumentoIController instrumentoController) {
+
         initComponents();
-        
-        setDefaultCloseOperation(
-              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
-        );
 
         this.instrumentoController = instrumentoController;
-
-        this.instrumento = new InstrumentoPercussao();
-    }
-    
-    
-    public CadastroInstrumentoPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
-
-        initComponents();
 
         setDefaultCloseOperation(
                 javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
 
-        this.instrumento = instrumento;
-        this.instrumentoController = instrumentoController;
+        this.instrumento = new InstrumentoPercussao();
+    }
 
+
+        public CadastroInstrumentoPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
+
+        this(instrumentoController);
+
+        this.instrumento = instrumento;
+
+        carregarDadosInstrumento();
+    }
+        
+    private void carregarDadosInstrumento() {
 
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
 
-        cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
-        
-        if(instrumento.getTipoPele() !=  null){
-            cbPele.setSelectedItem(instrumento.getTipoPele());
-        }else{
-            cbPele.setSelectedItem("Não usa baquetas");
-        }
-        
-        if(instrumento.getTipoBaqueta() !=  null){
-            cbBaqueta.setSelectedItem(instrumento.getTipoBaqueta());
-        }else{
-            cbBaqueta.setSelectedItem("Não usa baquetas");
+        cbEstado.setSelectedItem(
+                instrumento.getEstadoConservacao()
+        );
+
+        if (instrumento.getTipoPele() != null) {
+            cbPele.setSelectedItem(
+                    instrumento.getTipoPele()
+            );
+        } else {
+            cbPele.setSelectedItem(
+                    "Não usa pele"
+            );
         }
 
+        if (instrumento.getTipoBaqueta() != null) {
+            cbBaqueta.setSelectedItem(
+                    instrumento.getTipoBaqueta()
+            );
+        } else {
+            cbBaqueta.setSelectedItem(
+                    "Não usa baquetas"
+            );
+        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

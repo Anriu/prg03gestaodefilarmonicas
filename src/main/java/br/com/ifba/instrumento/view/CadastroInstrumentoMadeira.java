@@ -8,11 +8,15 @@ import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
 import br.com.ifba.instrumento.entity.Tonalidade;
 import javax.swing.DefaultComboBoxModel;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
  * @author anriu
  */
+
+@Component
+@Scope("prototype")
 
 public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
@@ -25,47 +29,57 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
      */
     
     public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController) {
+
         initComponents();
-        cbAfinacao.setModel(new DefaultComboBoxModel<>(Tonalidade.values()));
-        
-        setDefaultCloseOperation(
-              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
-        );
 
         this.instrumentoController = instrumentoController;
+
+        cbAfinacao.setModel(
+            new DefaultComboBoxModel<>(Tonalidade.values())
+        );
+
+        setDefaultCloseOperation(
+            javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
 
         this.instrumento = new InstrumentoMadeira();
-        
-        
     }
+    
     public CadastroInstrumentoMadeira(InstrumentoMadeira instrumento, InstrumentoIController instrumentoController) {
 
-        initComponents();
-
-        setDefaultCloseOperation(
-                javax.swing.WindowConstants.DISPOSE_ON_CLOSE
-        );
+        this(instrumentoController);
 
         this.instrumento = instrumento;
-        this.instrumentoController = instrumentoController;
 
+        carregarDadosInstrumento();
+    }
+    
+    private void carregarDadosInstrumento() {
 
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
 
-        cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
-        cbAfinacao.setSelectedItem(instrumento.getTonalidade().getDescricao());
-        
-        if(instrumento.getTipoPalheta() != null){
-           cbPalheta.setSelectedItem(instrumento.getTipoPalheta()); 
-        }else{
-           cbPalheta.setSelectedItem("Não usa Palheta");
-        }
+        cbEstado.setSelectedItem(
+            instrumento.getEstadoConservacao()
+        );
 
-        
+        cbAfinacao.setSelectedItem(
+            instrumento.getTonalidade()
+        );
+
+        if (instrumento.getTipoPalheta() != null) {
+            cbPalheta.setSelectedItem(
+                instrumento.getTipoPalheta()
+            );
+        } else {
+            cbPalheta.setSelectedItem(
+                "Não usa Palheta"
+            );
+        }
     }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

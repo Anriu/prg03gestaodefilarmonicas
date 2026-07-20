@@ -4,6 +4,7 @@ import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
 import br.com.ifba.instrumento.entity.Tonalidade;
 import javax.swing.DefaultComboBoxModel;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Component;
  * @author anriu
  */
 
+@Component
+@Scope("prototype")
 public class CadastroInstrumentoMetal extends javax.swing.JFrame {
 
     private InstrumentoMetal instrumento;
@@ -18,51 +21,63 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
     
     /**
      * Creates new form CadstroMetal
+     * @param instrumentoController
      */
     public CadastroInstrumentoMetal(InstrumentoIController instrumentoController) {
+
         initComponents();
-        cbAfinacao.setModel(new DefaultComboBoxModel<>(Tonalidade.values()));
-        
-        setDefaultCloseOperation(
-              javax.swing.WindowConstants.DISPOSE_ON_CLOSE
-        );
 
         this.instrumentoController = instrumentoController;
+
+        cbAfinacao.setModel(
+            new DefaultComboBoxModel<>(Tonalidade.values())
+        );
+
+        setDefaultCloseOperation(
+            javax.swing.WindowConstants.DISPOSE_ON_CLOSE
+        );
 
         this.instrumento = new InstrumentoMetal();
     }
 
-    public CadastroInstrumentoMetal(InstrumentoMetal instrumento, InstrumentoIController instrumentoController) {
+     public CadastroInstrumentoMetal(
+            InstrumentoMetal instrumento,
+            InstrumentoIController instrumentoController
+    ) {
 
-        initComponents();
-
-        setDefaultCloseOperation(
-                javax.swing.WindowConstants.DISPOSE_ON_CLOSE
-        );
+        this(instrumentoController);
 
         this.instrumento = instrumento;
-        this.instrumentoController = instrumentoController;
 
+        carregarDadosInstrumento();
+    }
+
+
+     private void carregarDadosInstrumento() {
 
         txtNome.setText(instrumento.getNome());
         txtNumSerie.setText(instrumento.getNumSerie());
         txtMarca.setText(instrumento.getMarca());
         txtModelo.setText(instrumento.getModelo());
 
-        cbEstado.setSelectedItem(instrumento.getEstadoConservacao());
-        cbAfinacao.setSelectedItem(instrumento.getTonalidade().getDescricao());
-        spnQuantidadePistons.setValue(instrumento.getQtdPistoes());
-        
+        cbEstado.setSelectedItem(
+            instrumento.getEstadoConservacao()
+        );
+
+        cbAfinacao.setSelectedItem(
+            instrumento.getTonalidade()
+        );
+
+        spnQuantidadePistons.setValue(
+            instrumento.getQtdPistoes()
+        );
+
         if (instrumento.isPossuiRotor()) {
             cbRotor.setSelectedItem("Sim");
         } else {
             cbRotor.setSelectedItem("Não");
         }
- 
-    }
-    
-    
-    
+    }   
     
     /**
      * This method is called from within the constructor to initialize the form.

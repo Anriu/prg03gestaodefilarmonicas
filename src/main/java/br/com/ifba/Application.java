@@ -20,6 +20,7 @@ public class Application {
         log.info("Inicializando sistema Spring Boot + Swing");
 
         // Inicializa o Spring Boot permitindo interface gráfica Swing
+        
         ConfigurableApplicationContext context =
                 new SpringApplicationBuilder(Application.class)
                         .headless(false)

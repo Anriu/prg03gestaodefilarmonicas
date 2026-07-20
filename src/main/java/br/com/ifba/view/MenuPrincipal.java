@@ -5,6 +5,7 @@
 package br.com.ifba.view;
 
 import br.com.ifba.fardamento.view.TelaFardamentos;
+import br.com.ifba.infrastructure.view.ViewManager;
 import br.com.ifba.instrumento.view.TelaInstrumento;
 import br.com.ifba.pessoa.view.CadastroMusico;
 import br.com.ifba.pessoa.view.TelaPessoa;
@@ -21,8 +22,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    private final ViewManager viewManager;
+
+    public MenuPrincipal(ViewManager viewManager) {
+        this.viewManager = viewManager;
+
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -49,7 +55,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(13, 125, 217));
@@ -185,16 +194,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void bntVerInstumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntVerInstumentosActionPerformed
         // TODO add your handling code here:
         
-        TelaInstrumento tela = new TelaInstrumento();
-        tela.setVisible(true);
+        viewManager.abrirTela(TelaInstrumento.class);
         
     }//GEN-LAST:event_bntVerInstumentosActionPerformed
 
     private void bntCadastroIntrumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastroIntrumentoActionPerformed
         // TODO add your handling code here:
         
-        TelaInstrumento tela = new TelaInstrumento();
-        tela.setVisible(true);
+        viewManager.abrirTela(TelaInstrumento.class);
         
     }//GEN-LAST:event_bntCadastroIntrumentoActionPerformed
 
