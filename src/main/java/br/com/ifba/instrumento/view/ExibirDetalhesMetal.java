@@ -1,11 +1,13 @@
 package br.com.ifba.instrumento.view;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
+
 public class ExibirDetalhesMetal extends javax.swing.JFrame {
 
     private InstrumentoMetal instrumento;

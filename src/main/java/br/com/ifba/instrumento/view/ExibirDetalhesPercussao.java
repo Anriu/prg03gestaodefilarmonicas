@@ -6,11 +6,14 @@ package br.com.ifba.instrumento.view;
 
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoPercussao;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
+
+
 public class ExibirDetalhesPercussao extends javax.swing.JFrame {
 
     

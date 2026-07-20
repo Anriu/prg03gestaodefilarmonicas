@@ -4,11 +4,13 @@ import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
 import br.com.ifba.instrumento.entity.Tonalidade;
 import javax.swing.DefaultComboBoxModel;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
+
 public class CadastroInstrumentoMetal extends javax.swing.JFrame {
 
     private InstrumentoMetal instrumento;

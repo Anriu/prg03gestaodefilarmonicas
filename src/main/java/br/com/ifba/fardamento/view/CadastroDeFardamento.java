@@ -4,10 +4,13 @@
  */
 package br.com.ifba.fardamento.view;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author anriu
  */
+@Component
 public class CadastroDeFardamento extends javax.swing.JFrame {
 
     /**
@@ -72,7 +75,7 @@ public class CadastroDeFardamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroDeFardamento().setVisible(true);
+                
             }
         });
     }

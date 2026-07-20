@@ -14,14 +14,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 /**
  *
  * @author anriu
  */
 
-@Component
+
 public class TelaInstrumento extends javax.swing.JFrame {
 
    

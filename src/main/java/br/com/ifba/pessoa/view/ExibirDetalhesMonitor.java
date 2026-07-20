@@ -4,10 +4,13 @@
  */
 package br.com.ifba.pessoa.view;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author anriu
  */
+
 public class ExibirDetalhesMonitor extends javax.swing.JFrame {
 
     /**
@@ -72,7 +75,7 @@ public class ExibirDetalhesMonitor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExibirDetalhesMonitor().setVisible(true);
+                
             }
         });
     }

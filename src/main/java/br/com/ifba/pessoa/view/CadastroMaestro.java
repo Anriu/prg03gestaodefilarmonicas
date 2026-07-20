@@ -4,10 +4,13 @@
  */
 package br.com.ifba.pessoa.view;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author anriu
  */
+
 public class CadastroMaestro extends javax.swing.JFrame {
 
     /**
@@ -40,9 +43,7 @@ public class CadastroMaestro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(720, 720));
         setMinimumSize(new java.awt.Dimension(720, 720));
-        setPreferredSize(new java.awt.Dimension(720, 720));
 
         background.setBackground(new java.awt.Color(3, 28, 48));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,11 +123,11 @@ public class CadastroMaestro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
 
         pack();
@@ -178,7 +179,7 @@ public class CadastroMaestro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroMaestro().setVisible(true);
+               
             }
         });
     }

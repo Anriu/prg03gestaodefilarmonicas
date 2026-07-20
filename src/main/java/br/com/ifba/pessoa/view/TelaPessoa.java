@@ -4,10 +4,13 @@
  */
 package br.com.ifba.pessoa.view;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author anriu
  */
+
 public class TelaPessoa extends javax.swing.JFrame {
 
     /**
@@ -36,19 +39,21 @@ public class TelaPessoa extends javax.swing.JFrame {
         bntCadastroMonitor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1366, 720));
-        setPreferredSize(new java.awt.Dimension(1366, 720));
+        setExtendedState(6);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         background.setBackground(new java.awt.Color(3, 28, 48));
-        background.setMaximumSize(new java.awt.Dimension(1366, 720));
-        background.setMinimumSize(new java.awt.Dimension(1366, 720));
+        background.setMaximumSize(new java.awt.Dimension(1280, 720));
+        background.setMinimumSize(new java.awt.Dimension(1280, 720));
+        background.setPreferredSize(new java.awt.Dimension(1280, 720));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Componentes da Banda");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
+        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
 
         tblPessoas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,34 +68,34 @@ public class TelaPessoa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblPessoas);
 
-        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 1080, -1));
+        background.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 1190, 470));
 
         bntCadastroMaestro.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCadastroMaestro.setForeground(new java.awt.Color(255, 255, 255));
         bntCadastroMaestro.setText("Cadastrar Maestro");
-        background.add(bntCadastroMaestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 220, 30));
+        background.add(bntCadastroMaestro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 220, 30));
 
         bntCadastroAluno.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCadastroAluno.setForeground(new java.awt.Color(255, 255, 255));
-        bntCadastroAluno.setText("Cadatrar Aluno");
+        bntCadastroAluno.setText("Cadastrar Aluno");
         bntCadastroAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntCadastroAlunoActionPerformed(evt);
             }
         });
-        background.add(bntCadastroAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 220, 30));
+        background.add(bntCadastroAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 220, 30));
 
         bntCadastroMusico.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCadastroMusico.setForeground(new java.awt.Color(255, 255, 255));
         bntCadastroMusico.setText("Cadastrar Músico");
-        background.add(bntCadastroMusico, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 220, 30));
+        background.add(bntCadastroMusico, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 220, 30));
 
         bntCadastroMonitor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCadastroMonitor.setForeground(new java.awt.Color(255, 255, 255));
         bntCadastroMonitor.setText("Cadastrar Monitor");
-        background.add(bntCadastroMonitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 220, 30));
+        background.add(bntCadastroMonitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 220, 30));
 
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 720));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,7 +134,7 @@ public class TelaPessoa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPessoa().setVisible(true);
+                
             }
         });
     }

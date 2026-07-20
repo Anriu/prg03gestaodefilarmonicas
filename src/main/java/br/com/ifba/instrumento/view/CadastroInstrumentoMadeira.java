@@ -8,10 +8,12 @@ import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
 import br.com.ifba.instrumento.entity.Tonalidade;
 import javax.swing.DefaultComboBoxModel;
+import org.springframework.stereotype.Component;
 
 /**
  * @author anriu
  */
+
 public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
     private InstrumentoMadeira instrumento;
