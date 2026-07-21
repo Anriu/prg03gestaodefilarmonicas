@@ -1,5 +1,6 @@
 package br.com.ifba.instrumento.component;
 
+import br.com.ifba.infrastructure.view.ViewManager;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.Instrumento;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
@@ -25,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author anriu
  */
+
 public class ButtonEditor extends DefaultCellEditor {
 
     private static final int COL_DETALHES = 3;
@@ -32,24 +34,27 @@ public class ButtonEditor extends DefaultCellEditor {
     private static final int COL_EXCLUIR = 5;
 
     private final InstrumentoIController instrumentoController;
+    private final ViewManager viewManager;
     private final JButton button;
 
+    
     private int col;
     private int row;
     private JTable table;
     private Object valor;
 
-    /**
-     * Inicializa o editor responsável pelo tratamento das ações
-     * executadas a partir dos botões da tabela.
-     *
-     * @param checkBox componente exigido pela classe DefaultCellEditor.
-     * @param instrumentoController controlador responsável pelas
-     * operações relacionadas aos instrumentos.
-     */
-    public ButtonEditor(JCheckBox checkBox, InstrumentoIController instrumentoController) {
+
+    public ButtonEditor(
+            JCheckBox checkBox,
+            InstrumentoIController instrumentoController,
+            ViewManager viewManager
+  
+    ) {
+
         super(checkBox);
+
         this.instrumentoController = instrumentoController;
+        this.viewManager = viewManager;
 
         button = new JButton();
         button.setOpaque(false);
@@ -63,17 +68,15 @@ public class ButtonEditor extends DefaultCellEditor {
         });
     }
 
-    /**
-     * Captura as informações da célula selecionada para posterior
-     * execução da ação correspondente ao botão acionado.
-     */
+
     @Override
     public Component getTableCellEditorComponent(
             JTable table,
             Object value,
             boolean isSelected,
             int row,
-            int column) {
+            int column
+    ) {
 
         this.table = table;
         this.row = row;
@@ -83,71 +86,115 @@ public class ButtonEditor extends DefaultCellEditor {
         return button;
     }
 
-    /**
-     * Executa a ação correspondente à coluna selecionada na tabela.
-     */
+
     private void executarAcao() {
 
         DefaultTableModel model = (DefaultTableModel) table.getModel();
+
         int linhaModel = table.convertRowIndexToModel(row);
 
-        Long id = Long.valueOf(model.getValueAt(linhaModel, 6).toString());
+        Long id = Long.valueOf(
+                model.getValueAt(linhaModel, 6).toString()
+        );
 
-        Instrumento instrumento = instrumentoController.findById(id);
+
+        Instrumento instrumento =
+                instrumentoController.findById(id);
+
 
         if (instrumento == null) {
+
             JOptionPane.showMessageDialog(
                     button,
                     "Erro: Instrumento não encontrado."
             );
+
             return;
         }
 
+
+        // =========================
+        // DETALHES
+        // =========================
+
         if (col == COL_DETALHES) {
 
-            if ("Madeira".equals(instrumento.getTipo())) {
-                new ExibirDetalhesMadeira(
-                        (InstrumentoMadeira) instrumento
-                ).setVisible(true);
-            }
-            
-            if ("Metal".equals(instrumento.getTipo())) {
-                new ExibirDetalhesMetal(
-                        (InstrumentoMetal) instrumento
-                ).setVisible(true);
-            }
-            
-            if ("Percussão".equals(instrumento.getTipo())) {
-                new ExibirDetalhesPercussao(
-                        (InstrumentoPercussao) instrumento
-                ).setVisible(true);
-            }
-
-        } else if (col == COL_EDITAR) {
 
             if ("Madeira".equals(instrumento.getTipo())) {
 
-                new CadastroInstrumentoMadeira(
-                        (InstrumentoMadeira) instrumento,
-                        instrumentoController
-                ).setVisible(true);
+
+                viewManager.abrirTela(
+                        new ExibirDetalhesMadeira(
+                                (InstrumentoMadeira) instrumento
+                        )
+                );
+
 
             } else if ("Metal".equals(instrumento.getTipo())) {
 
-                new CadastroInstrumentoMetal(
-                        (InstrumentoMetal) instrumento,
-                        instrumentoController
-                ).setVisible(true);
+
+                viewManager.abrirTela(
+                        new ExibirDetalhesMetal(
+                                (InstrumentoMetal) instrumento
+                        )
+                );
+
 
             } else if ("Percussão".equals(instrumento.getTipo())) {
-                System.out.println("Ola");
-                new CadastroInstrumentoPercussao(
-                        (InstrumentoPercussao) instrumento,
-                        instrumentoController
-                ).setVisible(true);
+
+
+                viewManager.abrirTela(
+                        new ExibirDetalhesPercussao(
+                                (InstrumentoPercussao) instrumento
+                        )
+                );
+
             }
 
-        } else if (col == COL_EXCLUIR) {
+        }
+
+
+        // =========================
+        // EDITAR
+        // =========================
+
+        else if (col == COL_EDITAR) {
+
+
+            if ("Madeira".equals(instrumento.getTipo())) {
+
+
+                viewManager.abrirTela(
+                        new CadastroInstrumentoMadeira((InstrumentoMadeira) instrumento, instrumentoController, viewManager)
+                );
+
+
+            } else if ("Metal".equals(instrumento.getTipo())) {
+
+
+                viewManager.abrirTela(
+                        new CadastroInstrumentoMetal( (InstrumentoMetal) instrumento, instrumentoController, viewManager)
+                );
+
+
+            } else if ("Percussão".equals(instrumento.getTipo())) {
+
+
+                viewManager.abrirTela(
+                        new CadastroInstrumentoPercussao((InstrumentoPercussao) instrumento, instrumentoController, viewManager)
+                );
+
+            }
+
+        }
+
+
+        // =========================
+        // EXCLUIR
+        // =========================
+
+        else if (col == COL_EXCLUIR) {
+
 
             int resposta = JOptionPane.showConfirmDialog(
                     button,
@@ -158,25 +205,25 @@ public class ButtonEditor extends DefaultCellEditor {
                     JOptionPane.WARNING_MESSAGE
             );
 
+
             if (resposta == JOptionPane.YES_OPTION) {
+
 
                 instrumentoController.delete(instrumento);
 
                 model.removeRow(linhaModel);
 
+
                 JOptionPane.showMessageDialog(
                         button,
                         "Instrumento removido com sucesso!"
                 );
+
             }
         }
     }
 
-    /**
-     * Retorna o valor associado à célula em edição.
-     *
-     * @return valor da célula.
-     */
+
     @Override
     public Object getCellEditorValue() {
         return valor;

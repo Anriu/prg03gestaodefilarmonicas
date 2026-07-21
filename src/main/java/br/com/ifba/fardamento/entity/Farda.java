@@ -1,55 +1,31 @@
 package br.com.ifba.fardamento.entity;
 
 import br.com.ifba.infrastructure.entity.PersistenceEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * Representa uma farda completa da filarmônica.
- *
- * @author anriu
- */
+import java.util.List;
+
 @Entity
-@Table(name = "tb_farda")
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Table(name = "fardas")
+@Getter 
+@Setter
 public class Farda extends PersistenceEntity {
 
+    @Column(name = "nome_conjunto", nullable = false)
+    private String nome;
+
     @Enumerated(EnumType.STRING)
-    private TipoFarda tipo;
+    @Column(name = "tipo_farda")
+    private TipoFarda tipoFarda; 
 
-    @OneToOne
-    @JoinColumn(name = "blusa_id")
-    private Blusa blusa;
-
-    @OneToOne
-    @JoinColumn(name = "blase_id")
-    private Blase blase;
-
-    @OneToOne
-    @JoinColumn(name = "gravata_id")
-    private Gravata gravata;
-
-    @OneToOne
-    @JoinColumn(name = "talaba_id")
-    private Cordao cordao;
-
-    @OneToOne
-    @JoinColumn(name = "quepe_id")
-    private Quepe quepe;
-
-    @OneToOne
-    @JoinColumn(name = "calca_id")
-    private Calca calca;
-
-    @OneToOne
-    @JoinColumn(name = "saia_id")
-    private Saia saia;
-
+    
+    @ManyToMany
+    @JoinTable(
+        name = "farda_pecas",
+        joinColumns = @JoinColumn(name = "farda_id"),
+        inverseJoinColumns = @JoinColumn(name = "peca_fardamento_id")
+    )
+    private List<PecaFardamento> pecas;
 }

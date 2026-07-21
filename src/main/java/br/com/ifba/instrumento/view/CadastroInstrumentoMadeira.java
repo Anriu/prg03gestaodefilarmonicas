@@ -4,10 +4,12 @@
  */
 package br.com.ifba.instrumento.view;
 
+import br.com.ifba.infrastructure.view.ViewManager;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMadeira;
 import br.com.ifba.instrumento.entity.Tonalidade;
 import javax.swing.DefaultComboBoxModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,22 +19,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("prototype")
-
 public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
 
     private InstrumentoMadeira instrumento;
     private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
-    
+    private ViewManager viewManager;
     /**
      * Creates new form CadastroMadeira
      * @param instrumentoController
      */
     
-    public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController) {
+    @Autowired
+    public CadastroInstrumentoMadeira(InstrumentoIController instrumentoController, ViewManager viewManager) {
 
         initComponents();
-
-        this.instrumentoController = instrumentoController;
 
         cbAfinacao.setModel(
             new DefaultComboBoxModel<>(Tonalidade.values())
@@ -41,13 +41,17 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         setDefaultCloseOperation(
             javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
-
+        
+        this.instrumentoController = instrumentoController;
+        
+        this.viewManager = viewManager;
+        
         this.instrumento = new InstrumentoMadeira();
     }
     
-    public CadastroInstrumentoMadeira(InstrumentoMadeira instrumento, InstrumentoIController instrumentoController) {
+    public CadastroInstrumentoMadeira(InstrumentoMadeira instrumento, InstrumentoIController instrumentoController, ViewManager viewManager) {
 
-        this(instrumentoController);
+        this(instrumentoController, viewManager);
 
         this.instrumento = instrumento;
 
@@ -111,6 +115,8 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(3, 28, 48));
+        jPanel1.setMaximumSize(new java.awt.Dimension(900, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(900, 600));
 
         lblNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNome.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,11 +284,14 @@ public class CadastroInstrumentoMadeira extends javax.swing.JFrame {
         }        
 
         if (instrumento.getId() == null) {
-            instrumentoController.save(instrumento); 
+            instrumentoController.save(instrumento);
+            
         } else {
             instrumentoController.update(instrumento); 
         }
-            
+        
+        instrumentoController.update(instrumento);
+        
         this.dispose();
         
     }//GEN-LAST:event_bntSalvarActionPerformed

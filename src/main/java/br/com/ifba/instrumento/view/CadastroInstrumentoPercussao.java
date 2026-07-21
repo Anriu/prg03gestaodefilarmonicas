@@ -4,8 +4,10 @@
  */
 package br.com.ifba.instrumento.view;
 
+import br.com.ifba.infrastructure.view.ViewManager;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoPercussao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -19,27 +21,32 @@ public class CadastroInstrumentoPercussao extends javax.swing.JFrame {
 
     private InstrumentoPercussao instrumento;
     private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
-    
+    private ViewManager viewManager;   
     /**
      * Creates new form CadastroInstrumentoPercussivo
+     * @param instrumentoController
      */
-        public CadastroInstrumentoPercussao(InstrumentoIController instrumentoController) {
+    @Autowired
+    public CadastroInstrumentoPercussao(InstrumentoIController instrumentoController, ViewManager viewManager) {
 
         initComponents();
 
-        this.instrumentoController = instrumentoController;
+        
 
         setDefaultCloseOperation(
                 javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
-
+        this.instrumentoController = instrumentoController;
+        
+        this.viewManager = viewManager;
+        
         this.instrumento = new InstrumentoPercussao();
     }
 
 
-        public CadastroInstrumentoPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController) {
+        public CadastroInstrumentoPercussao(InstrumentoPercussao instrumento, InstrumentoIController instrumentoController, ViewManager viewManager) {
 
-        this(instrumentoController);
+        this(instrumentoController, viewManager);
 
         this.instrumento = instrumento;
 
@@ -104,6 +111,8 @@ public class CadastroInstrumentoPercussao extends javax.swing.JFrame {
         cbBaqueta = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 600));
+        setMinimumSize(new java.awt.Dimension(900, 600));
 
         jPanel1.setBackground(new java.awt.Color(3, 28, 48));
 

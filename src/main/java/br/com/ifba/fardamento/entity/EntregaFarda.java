@@ -1,43 +1,35 @@
-
 package br.com.ifba.fardamento.entity;
 
 import br.com.ifba.infrastructure.entity.PersistenceEntity;
 import br.com.ifba.pessoa.entity.MusicoBanda;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import java.time.LocalDate;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- *
- * @author anriu
- */
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "tb_entrega_farda")
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Table(name = "entregas_farda")
+@Getter 
+@Setter
 public class EntregaFarda extends PersistenceEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "musico_id")
-    private MusicoBanda musico;
+    @ManyToOne
+    @JoinColumn(name = "musico_id", nullable = false)
+    private MusicoBanda musico; // Músico da banda que recebeu a farda[cite: 1]
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "farda_id")
-    private Farda farda;
-
-    @Enumerated(EnumType.STRING)
-    private StatusFarda status;
-
+    @Column(name = "data_entrega", nullable = false)
     private LocalDate dataEntrega;
 
-    private LocalDate dataDevolucao;
+    @Column(name = "data_devolucao_prevista")
+    private LocalDate dataDevolucaoPrevista;
+
+    @ManyToMany
+    @JoinTable(
+        name = "entrega_pecas",
+        joinColumns = @JoinColumn(name = "entrega_id"),
+        inverseJoinColumns = @JoinColumn(name = "peca_id")
+    )
+    private List<PecaFardamento> pecasEntregues;
 }

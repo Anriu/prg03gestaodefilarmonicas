@@ -1,9 +1,11 @@
 package br.com.ifba.instrumento.view;
 
+import br.com.ifba.infrastructure.view.ViewManager;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
 import br.com.ifba.instrumento.entity.InstrumentoMetal;
 import br.com.ifba.instrumento.entity.Tonalidade;
 import javax.swing.DefaultComboBoxModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,16 +20,17 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
 
     private InstrumentoMetal instrumento;
     private br.com.ifba.instrumento.controller.InstrumentoIController instrumentoController;
+    private ViewManager viewManager;
     
-    /**
+            /**
      * Creates new form CadstroMetal
      * @param instrumentoController
      */
-    public CadastroInstrumentoMetal(InstrumentoIController instrumentoController) {
+    
+    @Autowired  
+    public CadastroInstrumentoMetal(InstrumentoIController instrumentoController, ViewManager viewManager) {
 
         initComponents();
-
-        this.instrumentoController = instrumentoController;
 
         cbAfinacao.setModel(
             new DefaultComboBoxModel<>(Tonalidade.values())
@@ -36,16 +39,17 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
         setDefaultCloseOperation(
             javax.swing.WindowConstants.DISPOSE_ON_CLOSE
         );
-
+        
+        this.instrumentoController = instrumentoController;
+        
+        this.viewManager = viewManager;
+        
         this.instrumento = new InstrumentoMetal();
     }
 
-     public CadastroInstrumentoMetal(
-            InstrumentoMetal instrumento,
-            InstrumentoIController instrumentoController
-    ) {
+     public CadastroInstrumentoMetal(InstrumentoMetal instrumento,InstrumentoIController instrumentoController, ViewManager viewManager) {
 
-        this(instrumentoController);
+        this(instrumentoController, viewManager);
 
         this.instrumento = instrumento;
 
@@ -108,6 +112,8 @@ public class CadastroInstrumentoMetal extends javax.swing.JFrame {
         cbRotor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 600));
+        setMinimumSize(new java.awt.Dimension(900, 600));
 
         jPanel1.setBackground(new java.awt.Color(3, 28, 48));
 

@@ -1,5 +1,6 @@
 package br.com.ifba.instrumento.view;
 
+import br.com.ifba.infrastructure.view.ViewManager;
 import br.com.ifba.instrumento.component.ButtonEditor;
 import br.com.ifba.instrumento.component.ButtonRenderer;
 import br.com.ifba.instrumento.controller.InstrumentoIController;
@@ -23,16 +24,20 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class TelaInstrumento extends javax.swing.JFrame {
-
+    
+    private final ViewManager viewManager;
     private final InstrumentoIController instrumentoController;
 
     private TableRowSorter<DefaultTableModel> sorter;
 
     /**
      * Creates new form CadastroInsturmento
+     * @param instrumentoController
+     * @param viewManager
      */
-    public TelaInstrumento(InstrumentoIController instrumentoController) {
+    public TelaInstrumento(InstrumentoIController instrumentoController, ViewManager viewManager) {
         
+        this.viewManager = viewManager;
         this.instrumentoController = instrumentoController;
         
         initComponents();
@@ -97,7 +102,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         // 3. Vincula os botões de ação e define as larguras fixas de forma definitiva
         for (int i = 3; i <= 5; i++) {
             tblInstrumentos.getColumnModel().getColumn(i).setCellRenderer(new ButtonRenderer());
-            tblInstrumentos.getColumnModel().getColumn(i).setCellEditor(new ButtonEditor(new JCheckBox(), instrumentoController));
+            tblInstrumentos.getColumnModel().getColumn(i).setCellEditor(new ButtonEditor(new JCheckBox(), instrumentoController,viewManager));
             tblInstrumentos.getColumnModel().getColumn(i).setMaxWidth(110);
             tblInstrumentos.getColumnModel().getColumn(i).setMinWidth(110);
         }
@@ -219,9 +224,14 @@ public class TelaInstrumento extends javax.swing.JFrame {
         bntAtualizarLista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
+        setMinimumSize(new java.awt.Dimension(1280, 720));
 
         background.setBackground(new java.awt.Color(3, 28, 48));
         background.setForeground(new java.awt.Color(3, 28, 48));
+        background.setMaximumSize(new java.awt.Dimension(1280, 720));
+        background.setMinimumSize(new java.awt.Dimension(1280, 720));
+        background.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
@@ -320,17 +330,6 @@ public class TelaInstrumento extends javax.swing.JFrame {
                 .addComponent(lblTitulo))
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(334, 334, 334)
-                .addComponent(lblPesquisa)
-                .addGap(365, 365, 365)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFiltro)
-                    .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(lblTipo)))
-                .addGap(73, 73, 73)
-                .addComponent(lblAfinação))
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(334, 334, 334)
                 .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(431, 431, 431)
                 .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,23 +347,33 @@ public class TelaInstrumento extends javax.swing.JFrame {
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(340, 340, 340)
                 .addComponent(bntAtualizarLista))
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGap(334, 334, 334)
+                .addComponent(lblPesquisa)
+                .addGap(370, 370, 370)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFiltro)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(lblTipo)
+                        .addGap(79, 79, 79)
+                        .addComponent(lblAfinação))))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(28, 28, 28)
                         .addComponent(lblPesquisa))
-                    .addComponent(lblFiltro)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(7, 7, 7)
+                        .addComponent(lblFiltro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTipo))
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(33, 33, 33)
                         .addComponent(lblAfinação)))
                 .addGap(6, 6, 6)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,7 +393,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(bntAtualizarLista)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -395,9 +404,7 @@ public class TelaInstrumento extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -406,27 +413,21 @@ public class TelaInstrumento extends javax.swing.JFrame {
     private void bntCadastrarMadeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarMadeiraActionPerformed
         // TODO add your handling code here:
         
-        System.out.println(instrumentoController);
-        CadastroInstrumentoMadeira cadastroMadeiras = new CadastroInstrumentoMadeira(instrumentoController);
-        cadastroMadeiras.setVisible(true);
+         viewManager.abrirTela(CadastroInstrumentoMadeira.class);
 
-        
     }//GEN-LAST:event_bntCadastrarMadeiraActionPerformed
 
     private void bntCadastrarMetalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarMetalActionPerformed
         // TODO add your handling code here:
-        
-        
-        CadastroInstrumentoMetal cadastroMetal = new CadastroInstrumentoMetal(instrumentoController);
-        cadastroMetal.setVisible(true);
-        
+
+        viewManager.abrirTela(CadastroInstrumentoMetal.class);
+
     }//GEN-LAST:event_bntCadastrarMetalActionPerformed
 
     private void bntCadastrarPercussaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarPercussaoActionPerformed
         // TODO add your handling code here:
         
-        CadastroInstrumentoPercussao cadastroPercussao = new CadastroInstrumentoPercussao(instrumentoController);
-        cadastroPercussao.setVisible(true);
+        viewManager.abrirTela(CadastroInstrumentoPercussao.class);
         
         
     }//GEN-LAST:event_bntCadastrarPercussaoActionPerformed
